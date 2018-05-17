@@ -29,7 +29,6 @@ A deposit transaction is created using a 2-of-3 multi-signature to fund the escr
 	-Input from Seller: Security deposit + mining fee to send to escrow + trade amount + trading fees
 	-Input from arbitrator: Security deposit
 	-Output to escrow address: 3*Security deposit + mining fee to send to buyer address from escrow + trade amount + 2*trading fees
-One more thing that BISQ has added is that they are creating a contranct, which is signed by both the parties and contains all the details of the trade. This contract is stored locally and can only be used incase of dispute.
 
 4) Verification:
 Once the deposit transaction is broadcasted a countdown will start in which the buyer will have to pay fiat currency to the seller using the selected payment method. The seller wil have to wait for the buyer to send the fiat amount. If the amount is arrived according to the parameters defined in the contract, then the seller will proceed to the payout using multisig.
