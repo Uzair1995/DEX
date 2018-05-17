@@ -55,5 +55,5 @@ For doing crypto to crypto we will need to implement atomic swap mechanisms. We 
 
 
 Ref and motivation:
-https://github.com/KomodoPlatform/KomodoPlatform/wiki/BarterDEX-%E2%80%93-A-Practical-Native-DEX
-https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2
+- https://github.com/KomodoPlatform/KomodoPlatform/wiki/BarterDEX-%E2%80%93-A-Practical-Native-DEX
+- https://github.com/KomodoPlatform/KomodoPlatform/wiki/barterDEX-Whitepaper-v2
