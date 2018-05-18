@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ArbitratorComponent } from './arbitrator/arbitrator.component';
 import { BuyerComponent } from './buyer/buyer.component';
 import { SellerComponent } from './seller/seller.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SellerComponent } from './seller/seller.component';
     SellerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
