@@ -2,16 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ArbitratorscreenComponent } from './arbitratorscreen/arbitratorscreen.component';
-import { SellercreenComponent } from './sellercreen/sellercreen.component';
-import { BuyercreenComponent } from './buyercreen/buyercreen.component';
+import { ArbitratorComponent } from './arbitrator/arbitrator.component';
+import { BuyerComponent } from './buyer/buyer.component';
+import { SellerComponent } from './seller/seller.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArbitratorscreenComponent,
-    SellercreenComponent,
-    BuyercreenComponent
+    ArbitratorComponent,
+    BuyerComponent,
+    SellerComponent
   ],
   imports: [
     BrowserModule
