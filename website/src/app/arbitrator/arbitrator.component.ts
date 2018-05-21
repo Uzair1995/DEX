@@ -15,6 +15,7 @@ export class ArbitratorComponent implements OnInit {
   web3: any;
   coinbase: string;
   contract: any;
+  passwordForCoinbase = "mparsec123";
 
   public owner;
   public sellerAddress;
@@ -40,8 +41,7 @@ export class ArbitratorComponent implements OnInit {
 
   LoadContract(ethContractAddress: string) {
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
-    this.web3.eth.defaultAccount = this.web3.eth.accounts[0];
-    console.log(this.contract);
+    this.web3.eth.defaultAccount = this.coinbase;
 
     this.owner = this.contract.owner.call();
     this.arbitratorAddress = this.contract.arbitratorAddress.call();
@@ -62,7 +62,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateOwner() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateOwner("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
       }
@@ -71,7 +71,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateArbitrator() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateArbitrator("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
       }
@@ -80,7 +80,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateSeller("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
       }
@@ -89,7 +89,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateBuyer("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
       }
@@ -98,7 +98,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateArbitratorFees() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateArbitratorFees(this.web3.toBigNumber(0.1*1000000000000000000));//0.1 ether
       }
@@ -107,7 +107,7 @@ export class ArbitratorComponent implements OnInit {
 
   updateOfferedAmount() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.updateOfferedAmount(this.web3.toBigNumber(1*1000000000000000000));//1 ether
       }
@@ -116,7 +116,7 @@ export class ArbitratorComponent implements OnInit {
 
   signerForBuyer(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.signerForBuyer();
       }
@@ -125,7 +125,7 @@ export class ArbitratorComponent implements OnInit {
 
   signerForSeller(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.signerForSeller();
       }
@@ -134,7 +134,7 @@ export class ArbitratorComponent implements OnInit {
 
   signerForArbitratorForBuyer(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.signerForArbitratorForBuyer();
       }
@@ -143,7 +143,7 @@ export class ArbitratorComponent implements OnInit {
 
   signerForArbitratorForSeller(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.signerForArbitratorForSeller();
       }
@@ -152,7 +152,7 @@ export class ArbitratorComponent implements OnInit {
 
   depositForBuyer(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.depositForBuyer({value:this.web3.toWei(1,'ether')});
       }
@@ -161,7 +161,7 @@ export class ArbitratorComponent implements OnInit {
 
   depositForSeller(){
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, "mparsec123");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if(isUnlocked){
         this.contract.depositForSeller({value:this.web3.toWei(1,'ether')});
       }
