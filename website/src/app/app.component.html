@@ -1,9 +1,10 @@
 <!--The whole content below can be removed with the new code.-->
 <div style="text-align:center">
-  <h1>DEX</h1>
+  <h1 style="color:#4CAF50">DEX</h1>
   <router-outlet></router-outlet>
-
-    <button id="button" (click)="navigateToArbitratorScreen()" >Arbitrate</button>
-    <button id="button" (click)="navigateToBuyerScreen()">Buy</button>
-    <button id="button" (click)="navigateToSellerScreen()">Sell</button>
+  <div class="row col-12" class="btn-group">
+    <button (click)="navigateToArbitratorScreen()" >Arbitrate</button>
+    <button (click)="navigateToBuyerScreen()">Buy</button>
+    <button (click)="navigateToSellerScreen()">Sell</button>
+  </div>
 </div>
