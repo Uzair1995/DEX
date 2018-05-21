@@ -15,7 +15,7 @@ export class ArbitratorComponent implements OnInit {
   web3: any;
   coinbase: string;
   contract: any;
-  passwordForCoinbase = "mparsec123";
+  passphraseForCoinBase: string = "mparsec123"
 
   public owner;
   public sellerAddress;
@@ -28,7 +28,6 @@ export class ArbitratorComponent implements OnInit {
   public isSellerAgreeing;
   public isArbitratorAgreeingForBuyer;
   public isArbitratorAgreeingForSeller;
-
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
 
@@ -39,7 +38,9 @@ export class ArbitratorComponent implements OnInit {
     this.coinbase = this.web3.eth.coinbase;
   }
 
+
   LoadContract(ethContractAddress: string) {
+
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
@@ -62,108 +63,108 @@ export class ArbitratorComponent implements OnInit {
 
   updateOwner() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateOwner("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.owner != undefined && this.owner != "") {
+        this.contract.updateOwner(this.owner);
       }
     }
   }
 
   updateArbitrator() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateArbitrator("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
+        this.contract.updateArbitrator(this.arbitratorAddress);
       }
     }
   }
 
   updateSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateSeller("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.sellerAddress != undefined && this.sellerAddress != "") {
+        this.contract.updateSeller(this.sellerAddress);
       }
     }
   }
 
   updateBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateBuyer("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.buyerAddress != undefined && this.buyerAddress != "") {
+        this.contract.updateBuyer(this.buyerAddress);
       }
     }
   }
 
   updateArbitratorFees() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateArbitratorFees(this.web3.toBigNumber(0.1*1000000000000000000));//0.1 ether
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.arbitratorFees != undefined && this.arbitratorFees > 0) {
+        this.contract.updateArbitratorFees(this.web3.toBigNumber(this.arbitratorFees));//in wei
       }
     }
   }
 
   updateOfferedAmount() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.updateOfferedAmount(this.web3.toBigNumber(1*1000000000000000000));//1 ether
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked && this.offeredAmount != undefined && this.offeredAmount > 0) {
+        this.contract.updateOfferedAmount(this.web3.toBigNumber(this.offeredAmount));//in wei
       }
     }
   }
 
-  signerForBuyer(){
+  signerForBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
         this.contract.signerForBuyer();
       }
     }
   }
 
-  signerForSeller(){
+  signerForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
         this.contract.signerForSeller();
       }
     }
   }
 
-  signerForArbitratorForBuyer(){
+  signerForArbitratorForBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
         this.contract.signerForArbitratorForBuyer();
       }
     }
   }
 
-  signerForArbitratorForSeller(){
+  signerForArbitratorForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
         this.contract.signerForArbitratorForSeller();
       }
     }
   }
 
-  depositForBuyer(){
+  depositForBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.depositForBuyer({value:this.web3.toWei(1,'ether')});
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
+        this.contract.depositForBuyer({ value: this.offeredAmount });//in wei
       }
     }
   }
 
-  depositForSeller(){
+  depositForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
-        this.contract.depositForSeller({value:this.web3.toWei(1,'ether')});
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
+        this.contract.depositForSeller({ value: this.offeredAmount });//in wei
       }
     }
   }
