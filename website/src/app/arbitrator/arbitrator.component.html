@@ -3,6 +3,8 @@
   <input type="text" #ethContractAddress>
   <button id="button" (click)="LoadContract(ethContractAddress.value)">Submit</button>
 </p>
+<br>
+<br>
 <p>
   <label class="col-lg-2 control-label">Owner Address:</label>
   <input type="text" [(ngModel)]="owner">
@@ -29,19 +31,25 @@
   <button id="button" (click)="updateOfferedAmount()">Update</button><br>
 
   <label class="col-lg-2 control-label">Seller Deposited Amount:</label> {{sellerAmountDeposit}}<br>
+
   <label class="col-lg-2 control-label">Buyer Security Deposit:</label> {{buyerSecurityDeposit}}<br>
+
   <label class="col-lg-2 control-label">Is Buyer Agreeing:</label> {{isBuyerAgreeing}}
   <button id="button" (click)="signerForBuyer()">Sign</button><br>
+
   <label class="col-lg-2 control-label">Is Seller Agreeing:</label> {{isSellerAgreeing}}
   <button id="button" (click)="signerForSeller()">Sign</button><br>
+
   <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Buyer:</label> {{isArbitratorAgreeingForBuyer}}
   <button id="button" (click)="signerForArbitratorForBuyer()">Sign</button><br>
+
   <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Seller:</label> {{isArbitratorAgreeingForSeller}}
   <button id="button" (click)="signerForArbitratorForSeller()">Sign</button><br>
 
   <button id="button" (click)="depositForSeller()">Deposit for Seller</button><br>
 
   <button id="button" (click)="depositForBuyer()">Deposit for Buyer</button><br>
-
-
 </p>
+<br>
+<br>
+<br>
