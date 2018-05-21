@@ -15,6 +15,21 @@ export class ArbitratorComponent implements OnInit {
   web3: any;
   coinbase: string;
 
+    public owner;
+    public sellerAddress;
+    public buyerAddress;
+    public arbitratorAddress;
+    public arbitratorFees;
+    public offeredAmount;
+    
+    public isBuyerAgreeing;
+    public isSellerAgreeing;
+    public isArbitratorAgreeingForBuyer;
+    public isArbitratorAgreeingForSeller;
+    
+    public sellerAmountDeposit;
+    public buyerSecurityDeposit;
+
   constructor() { }
 
   ngOnInit() {
@@ -23,9 +38,24 @@ export class ArbitratorComponent implements OnInit {
   }
 
   LoadContract(ethContractAddress: string){
-    var CoursetroContract = this.web3.eth.contract(this.contractAbi);
-    var Coursetro = CoursetroContract.at(ethContractAddress);
-    console.log(Coursetro);
+    var contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
+    console.log(contract);
+    
+    this.owner = contract.owner.call();
+    this.arbitratorAddress = contract.arbitratorAddress.call();
+    this.sellerAddress = contract.sellerAddress.call();
+    this.buyerAddress = contract.buyerAddress.call();
+    
+    this.arbitratorFees = contract.arbitratorFees.call();
+    this.offeredAmount = contract.offeredAmount.call();
+
+    this.isBuyerAgreeing = contract.isBuyerAgreeing.call();
+    this.isSellerAgreeing = contract.isSellerAgreeing.call();
+    this.isArbitratorAgreeingForBuyer = contract.isArbitratorAgreeingForBuyer.call();
+    this.isArbitratorAgreeingForSeller = contract.isArbitratorAgreeingForSeller.call();
+
+    this.sellerAmountDeposit = contract.sellerAmountDeposit.call();
+    this.buyerSecurityDeposit = contract.buyerSecurityDeposit.call();
   }
 
 }

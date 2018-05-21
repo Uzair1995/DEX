@@ -3,3 +3,17 @@
   <input type="text" #ethContractAddress>
   <button id="button" (click)="LoadContract(ethContractAddress.value)">Submit</button>
 </p>
+<p>
+  <label class="col-lg-2 control-label">Owner Address:</label> {{owner}}<br>
+  <label class="col-lg-2 control-label">Arbitrator Address:</label> {{arbitratorAddress}}<br>
+  <label class="col-lg-2 control-label">Seller Address:</label> {{sellerAddress}}<br>
+  <label class="col-lg-2 control-label">Buyer Address:</label> {{buyerAddress}}<br>
+  <label class="col-lg-2 control-label">Arbitrator Fees:</label> {{arbitratorFees}}<br>
+  <label class="col-lg-2 control-label">Trade Amount:</label> {{offeredAmount}}<br>
+  <label class="col-lg-2 control-label">Seller Deposited Amount:</label> {{sellerAmountDeposit}}<br>
+  <label class="col-lg-2 control-label">Buyer Security Deposit:</label> {{buyerSecurityDeposit}}<br>
+  <label class="col-lg-2 control-label">Is Buyer Agreeing:</label> {{isBuyerAgreeing}}<br>
+  <label class="col-lg-2 control-label">Is Seller Agreeing:</label> {{isSellerAgreeing}}<br>
+  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Buyer:</label> {{isArbitratorAgreeingForBuyer}}<br>
+  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Seller:</label> {{isArbitratorAgreeingForSeller}}<br>
+</p>
