@@ -1,3 +1,5 @@
 <p>
-  arbitrator works!
+  <label class="col-lg-2 control-label">Contract Address:</label>
+  <input type="text" #ethContractAddress>
+  <button id="button" (click)="LoadContract(ethContractAddress.value)">Submit</button>
 </p>
