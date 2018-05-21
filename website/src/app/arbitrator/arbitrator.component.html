@@ -4,16 +4,44 @@
   <button id="button" (click)="LoadContract(ethContractAddress.value)">Submit</button>
 </p>
 <p>
-  <label class="col-lg-2 control-label">Owner Address:</label> {{owner}}<br>
-  <label class="col-lg-2 control-label">Arbitrator Address:</label> {{arbitratorAddress}}<br>
-  <label class="col-lg-2 control-label">Seller Address:</label> {{sellerAddress}}<br>
-  <label class="col-lg-2 control-label">Buyer Address:</label> {{buyerAddress}}<br>
-  <label class="col-lg-2 control-label">Arbitrator Fees:</label> {{arbitratorFees}}<br>
-  <label class="col-lg-2 control-label">Trade Amount:</label> {{offeredAmount}}<br>
+  <label class="col-lg-2 control-label">Owner Address:</label>
+  <input type="text" [(ngModel)]="owner">
+  <button id="button" (click)="updateOwner()">Update</button><br>
+
+  <label class="col-lg-2 control-label">Arbitrator Address:</label>
+  <input type="text" [(ngModel)]="arbitratorAddress">
+  <button id="button" (click)="updateArbitrator()">Update</button><br>
+
+  <label class="col-lg-2 control-label">Seller Address:</label>
+  <input type="text" [(ngModel)]="sellerAddress">
+  <button id="button" (click)="updateSeller()">Update</button><br>
+  
+  <label class="col-lg-2 control-label">Buyer Address:</label>
+  <input type="text" [(ngModel)]="buyerAddress">
+  <button id="button" (click)="updateBuyer()">Update</button><br>
+  
+  <label class="col-lg-2 control-label">Arbitrator Fees:</label>
+  <input type="text" [(ngModel)]="arbitratorFees">
+  <button id="button" (click)="updateArbitratorFees()">Update</button><br>
+
+  <label class="col-lg-2 control-label">Trade Amount:</label>
+  <input type="text" [(ngModel)]="offeredAmount">
+  <button id="button" (click)="updateOfferedAmount()">Update</button><br>
+
   <label class="col-lg-2 control-label">Seller Deposited Amount:</label> {{sellerAmountDeposit}}<br>
   <label class="col-lg-2 control-label">Buyer Security Deposit:</label> {{buyerSecurityDeposit}}<br>
-  <label class="col-lg-2 control-label">Is Buyer Agreeing:</label> {{isBuyerAgreeing}}<br>
-  <label class="col-lg-2 control-label">Is Seller Agreeing:</label> {{isSellerAgreeing}}<br>
-  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Buyer:</label> {{isArbitratorAgreeingForBuyer}}<br>
-  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Seller:</label> {{isArbitratorAgreeingForSeller}}<br>
+  <label class="col-lg-2 control-label">Is Buyer Agreeing:</label> {{isBuyerAgreeing}}
+  <button id="button" (click)="signerForBuyer()">Sign</button><br>
+  <label class="col-lg-2 control-label">Is Seller Agreeing:</label> {{isSellerAgreeing}}
+  <button id="button" (click)="signerForSeller()">Sign</button><br>
+  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Buyer:</label> {{isArbitratorAgreeingForBuyer}}
+  <button id="button" (click)="signerForArbitratorForBuyer()">Sign</button><br>
+  <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Seller:</label> {{isArbitratorAgreeingForSeller}}
+  <button id="button" (click)="signerForArbitratorForSeller()">Sign</button><br>
+
+  <button id="button" (click)="depositForSeller()">Deposit for Seller</button><br>
+
+  <button id="button" (click)="depositForBuyer()">Deposit for Buyer</button><br>
+
+
 </p>
