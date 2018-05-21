@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ABI } from '../../ABI.const';
+
 declare var require: any;
 var Web3 = require('web3');
+
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -62,8 +64,8 @@ export class SellerComponent implements OnInit {
   updateOwner() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateOwner("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      if (isUnlocked && this.owner != undefined && this.owner != "") {
+        this.contract.updateOwner(this.owner);
       }
     }
   }
@@ -71,8 +73,8 @@ export class SellerComponent implements OnInit {
   updateArbitrator() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateArbitrator("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      if (isUnlocked && this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
+        this.contract.updateArbitrator(this.arbitratorAddress);
       }
     }
   }
@@ -80,8 +82,8 @@ export class SellerComponent implements OnInit {
   updateSeller() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateSeller("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      if (isUnlocked && this.sellerAddress != undefined && this.sellerAddress != "") {
+        this.contract.updateSeller(this.sellerAddress);
       }
     }
   }
@@ -89,8 +91,8 @@ export class SellerComponent implements OnInit {
   updateBuyer() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateBuyer("0xbCAC3E9973918eF49ec2b08325d3add3b7586a36");
+      if (isUnlocked && this.buyerAddress != undefined && this.buyerAddress != "") {
+        this.contract.updateBuyer(this.buyerAddress);
       }
     }
   }
@@ -98,8 +100,8 @@ export class SellerComponent implements OnInit {
   updateArbitratorFees() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateArbitratorFees(this.web3.toBigNumber(0.1 * 1000000000000000000));//0.1 ether
+      if (isUnlocked && this.arbitratorFees != undefined && this.arbitratorFees > 0) {
+        this.contract.updateArbitratorFees(this.web3.toBigNumber(this.arbitratorFees));// in wei
       }
     }
   }
@@ -107,8 +109,8 @@ export class SellerComponent implements OnInit {
   updateOfferedAmount() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.updateOfferedAmount(this.web3.toBigNumber(1 * 1000000000000000000));//1 ether
+      if (isUnlocked && this.offeredAmount != undefined && this.offeredAmount > 0) {
+        this.contract.updateOfferedAmount(this.web3.toBigNumber(this.offeredAmount));// in wei
       }
     }
   }
@@ -153,7 +155,7 @@ export class SellerComponent implements OnInit {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if (isUnlocked) {
-        this.contract.depositForBuyer({ value: this.web3.toWei(1, 'ether') });
+        this.contract.depositForBuyer({ value: this.offeredAmount });//in wei
       }
     }
   }
@@ -162,7 +164,7 @@ export class SellerComponent implements OnInit {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if (isUnlocked) {
-        this.contract.depositForSeller({ value: this.web3.toWei(1, 'ether') });
+        this.contract.depositForSeller({ value: this.offeredAmount });//in wei
       }
     }
   }
