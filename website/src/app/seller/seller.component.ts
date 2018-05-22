@@ -36,8 +36,8 @@ export class SellerComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    // this.coinbase = this.web3.eth.coinbase;
+    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    this.coinbase = this.web3.eth.coinbase;
   }
 
   LoadContract(ethContractAddress: string) {
