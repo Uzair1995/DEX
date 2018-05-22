@@ -79,4 +79,12 @@ export class SellerComponent implements OnInit {
     }
   }
 
+  releaseFundsToSeller(){
+    if(this.contract !=undefined){
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
+      if(isUnlocked){
+        this.contract.releaseFundsToSeller();
+      }
+    }
+  }
 }

@@ -59,9 +59,6 @@ export class ArbitratorComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
-
-    // var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-    // this.contract.releaseFundsToBuyer();
   }
 
   updateOwner() {
