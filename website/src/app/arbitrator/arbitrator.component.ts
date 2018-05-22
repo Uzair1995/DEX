@@ -34,8 +34,8 @@ export class ArbitratorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    this.coinbase = this.web3.eth.coinbase;
+    // this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    // this.coinbase = this.web3.eth.coinbase;
   }
 
 
@@ -118,24 +118,6 @@ export class ArbitratorComponent implements OnInit {
     }
   }
 
-  signerForBuyer() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForBuyer();
-      }
-    }
-  }
-
-  signerForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForSeller();
-      }
-    }
-  }
-
   signerForArbitratorForBuyer() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
@@ -153,23 +135,4 @@ export class ArbitratorComponent implements OnInit {
       }
     }
   }
-
-  depositForBuyer() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.depositForBuyer({ value: this.offeredAmount });//in wei
-      }
-    }
-  }
-
-  depositForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.depositForSeller({ value: this.offeredAmount });//in wei
-      }
-    }
-  }
-
 }

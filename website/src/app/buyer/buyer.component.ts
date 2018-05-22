@@ -34,8 +34,8 @@ export class BuyerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    this.coinbase = this.web3.eth.coinbase;
+    // this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    // this.coinbase = this.web3.eth.coinbase;
   }
 
 
@@ -61,92 +61,11 @@ export class BuyerComponent implements OnInit {
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
   }
 
-  updateOwner() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.owner != undefined && this.owner != "") {
-        this.contract.updateOwner(this.owner);
-      }
-    }
-  }
-
-  updateArbitrator() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
-        this.contract.updateArbitrator(this.arbitratorAddress);
-      }
-    }
-  }
-
-  updateSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.sellerAddress != undefined && this.sellerAddress != "") {
-        this.contract.updateSeller(this.sellerAddress);
-      }
-    }
-  }
-
-  updateBuyer() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.buyerAddress != undefined && this.buyerAddress != "") {
-        this.contract.updateBuyer(this.buyerAddress);
-      }
-    }
-  }
-
-  updateArbitratorFees() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.arbitratorFees != undefined && this.arbitratorFees > 0) {
-        this.contract.updateArbitratorFees(this.web3.toBigNumber(this.arbitratorFees));//in wei
-      }
-    }
-  }
-
-  updateOfferedAmount() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.offeredAmount != undefined && this.offeredAmount > 0) {
-        this.contract.updateOfferedAmount(this.web3.toBigNumber(this.offeredAmount));//in wei
-      }
-    }
-  }
-
   signerForBuyer() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
       if (isUnlocked) {
         this.contract.signerForBuyer();
-      }
-    }
-  }
-
-  signerForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForSeller();
-      }
-    }
-  }
-
-  signerForArbitratorForBuyer() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForArbitratorForBuyer();
-      }
-    }
-  }
-
-  signerForArbitratorForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForArbitratorForSeller();
       }
     }
   }
@@ -159,15 +78,4 @@ export class BuyerComponent implements OnInit {
       }
     }
   }
-
-  depositForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.depositForSeller({ value: this.offeredAmount });//in wei
-      }
-    }
-  }
-
-
 }
