@@ -27,6 +27,8 @@ export class ArbitratorComponent implements OnInit {
   public isBuyerAgreeing;
   public isSellerAgreeing;
   public isArbitratorAgreeingForBuyer;
+  public sellerDisputeRaise;
+  public buyerDisputeRaise;
   public isArbitratorAgreeingForSeller;
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
@@ -40,7 +42,6 @@ export class ArbitratorComponent implements OnInit {
 
 
   LoadContract(ethContractAddress: string) {
-
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
@@ -59,6 +60,9 @@ export class ArbitratorComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
+
+    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
+    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
   }
 
   updateOwner() {
@@ -132,4 +136,23 @@ export class ArbitratorComponent implements OnInit {
       }
     }
   }
+
+  raiseDisputeForSeller() {
+    if (this.contract != undefined) {
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
+        this.contract.raiseDisputeForSeller();
+      }
+    }
+  }
+
+  raiseDisputeForBuyer() {
+    if (this.contract != undefined) {
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
+        this.contract.raiseDisputeForSeller();
+      }
+    }
+  }
+
 }
