@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ABI } from 'ABI.const';
 
 declare var require: any;
+declare var window: any;
 var Web3 = require('web3');
+var web3 = window.web3;
 
 @Component({
   selector: 'app-arbitrator',
@@ -36,8 +38,14 @@ export class ArbitratorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    this.coinbase = this.web3.eth.coinbase;
+
+    if (web3 != undefined) {
+      this.web3 = web3;
+    }
+    else {
+      this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    }
+    this.coinbase = this.web3.eth.accounts[0];
   }
 
 

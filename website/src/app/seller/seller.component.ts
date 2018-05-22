@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ABI } from '../../ABI.const';
 
 declare var require: any;
+declare var window: any;
 var Web3 = require('web3');
+var web3 = window.web3;
+
 
 @Component({
   selector: 'app-seller',
@@ -39,8 +42,13 @@ export class SellerComponent implements OnInit {
 
 
   ngOnInit() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    this.coinbase = this.web3.eth.coinbase;
+    if (web3 != undefined) {
+      this.web3 = web3;
+    }
+    else {
+      this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    }
+    this.coinbase = this.web3.eth.accounts[0];
   }
 
   LoadContract(ethContractAddress: string) {
@@ -85,10 +93,10 @@ export class SellerComponent implements OnInit {
     }
   }
 
-  releaseFundsToSeller(){
-    if(this.contract !=undefined){
+  releaseFundsToSeller() {
+    if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if(isUnlocked){
+      if (isUnlocked) {
         this.contract.releaseFundsToSeller();
       }
     }
