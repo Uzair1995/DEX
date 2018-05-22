@@ -30,6 +30,8 @@ export class BuyerComponent implements OnInit {
   public isArbitratorAgreeingForSeller;
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
+  public sellerDisputeRaise;
+  public buyerDisputeRaise;
 
   constructor() { }
 
@@ -59,6 +61,9 @@ export class BuyerComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
+
+    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
+    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
   }
 
   signerForBuyer() {
@@ -84,6 +89,15 @@ export class BuyerComponent implements OnInit {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
       if(isUnlocked){
         this.contract.releaseFundsToBuyer();
+      }
+    }
+  }
+
+  raiseDisputeForBuyer() {
+    if (this.contract != undefined) {
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
+      if (isUnlocked) {
+        this.contract.raiseDisputeForSeller();
       }
     }
   }
