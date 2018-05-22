@@ -98,7 +98,7 @@ export class SellerComponent implements OnInit {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
       if (isUnlocked) {
-        this.contract.raiseDisputeForSeller();
+        this.contract.raiseDisputeForSeller(this.web3.toBigNumber(10));
       }
     }
   }
