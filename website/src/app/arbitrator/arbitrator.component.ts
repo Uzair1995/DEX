@@ -27,6 +27,8 @@ export class ArbitratorComponent implements OnInit {
   public isBuyerAgreeing;
   public isSellerAgreeing;
   public isArbitratorAgreeingForBuyer;
+  public sellerDisputeRaise;
+  public buyerDisputeRaise;
   public isArbitratorAgreeingForSeller;
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
@@ -34,13 +36,12 @@ export class ArbitratorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    // this.coinbase = this.web3.eth.coinbase;
+    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    this.coinbase = this.web3.eth.coinbase;
   }
 
 
   LoadContract(ethContractAddress: string) {
-
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
@@ -59,6 +60,9 @@ export class ArbitratorComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
+
+    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
+    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
   }
 
   updateOwner() {
@@ -132,4 +136,5 @@ export class ArbitratorComponent implements OnInit {
       }
     }
   }
+
 }

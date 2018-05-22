@@ -32,12 +32,15 @@ export class SellerComponent implements OnInit {
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
 
+  public sellerDisputeRaise;
+  public buyerDisputeRaise;
+
   constructor() { }
 
 
   ngOnInit() {
-    // this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
-    // this.coinbase = this.web3.eth.coinbase;
+    this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
+    this.coinbase = this.web3.eth.coinbase;
   }
 
   LoadContract(ethContractAddress: string) {
@@ -59,6 +62,9 @@ export class SellerComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
+
+    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
+    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
   }
 
   signerForSeller() {
@@ -87,4 +93,14 @@ export class SellerComponent implements OnInit {
       }
     }
   }
+
+  raiseDisputeForSeller() {
+    if (this.contract != undefined) {
+      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
+      if (isUnlocked) {
+        this.contract.raiseDisputeForSeller();
+      }
+    }
+  }
+
 }
