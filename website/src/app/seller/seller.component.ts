@@ -32,6 +32,9 @@ export class SellerComponent implements OnInit {
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
 
+  public sellerDisputeRaise;
+  public buyerDisputeRaise;
+
   constructor() { }
 
 
@@ -59,6 +62,9 @@ export class SellerComponent implements OnInit {
 
     this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
     this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
+
+    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
+    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
   }
 
   signerForSeller() {
