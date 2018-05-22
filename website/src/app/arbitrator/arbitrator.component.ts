@@ -137,15 +137,6 @@ export class ArbitratorComponent implements OnInit {
     }
   }
 
-  raiseDisputeForSeller() {
-    if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.raiseDisputeForSeller();
-      }
-    }
-  }
-
   raiseDisputeForBuyer() {
     if (this.contract != undefined) {
       var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
