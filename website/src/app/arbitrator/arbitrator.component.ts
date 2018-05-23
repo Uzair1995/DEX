@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ABI } from 'ABI.const';
-
+import { promisify } from 'app/wrappers/wrapper'
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
@@ -49,99 +49,84 @@ export class ArbitratorComponent implements OnInit {
   }
 
 
-  LoadContract(ethContractAddress: string) {
+  async LoadContract(ethContractAddress: string) {
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
-    this.owner = this.contract.owner.call();
-    this.arbitratorAddress = this.contract.arbitratorAddress.call();
-    this.sellerAddress = this.contract.sellerAddress.call();
-    this.buyerAddress = this.contract.buyerAddress.call();
-
-    this.arbitratorFees = this.contract.arbitratorFees.call();
-    this.offeredAmount = this.contract.offeredAmount.call();
-
-    this.isBuyerAgreeing = this.contract.isBuyerAgreeing.call();
-    this.isSellerAgreeing = this.contract.isSellerAgreeing.call();
-    this.isArbitratorAgreeingForBuyer = this.contract.isArbitratorAgreeingForBuyer.call();
-    this.isArbitratorAgreeingForSeller = this.contract.isArbitratorAgreeingForSeller.call();
-
-    this.sellerAmountDeposit = this.contract.sellerAmountDeposit.call();
-    this.buyerSecurityDeposit = this.contract.buyerSecurityDeposit.call();
-
-    this.sellerDisputeRaise = this.contract.sellerDisputeRaise.call();
-    this.buyerDisputeRaise = this.contract.buyerDisputeRaise.call();
+    this.owner = await promisify(cb => this.contract.owner.call(cb));
+    this.arbitratorAddress = await promisify(cb => this.contract.arbitratorAddress.call(cb))
+    this.sellerAddress = await promisify(cb => this.contract.sellerAddress.call(cb));
+    this.buyerAddress = await promisify(cb => this.contract.buyerAddress.call(cb));
+    this.arbitratorFees = await promisify(cb => this.contract.arbitratorFees.call(cb));
+    this.offeredAmount = await promisify(cb => this.contract.offeredAmount.call(cb));
+    this.isBuyerAgreeing = await promisify(cb => this.contract.isBuyerAgreeing.call(cb));
+    this.isSellerAgreeing = await promisify(cb => this.contract.isSellerAgreeing.call(cb));
+    this.isArbitratorAgreeingForBuyer = await promisify(cb => this.contract.isArbitratorAgreeingForBuyer.call(cb));
+    this.isArbitratorAgreeingForSeller = await promisify(cb => this.contract.isArbitratorAgreeingForSeller.call(cb));
+    this.sellerAmountDeposit = await promisify(cb => this.contract.sellerAmountDeposit.call(cb));
+    this.buyerSecurityDeposit = await promisify(cb => this.contract.buyerSecurityDeposit.call(cb));
+    this.sellerDisputeRaise = await promisify(cb => this.contract.sellerDisputeRaise.call(cb));
+    this.buyerDisputeRaise = await promisify(cb => this.contract.buyerDisputeRaise.call(cb));
   }
 
-  updateOwner() {
+  async updateOwner() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.owner != undefined && this.owner != "") {
-        this.contract.updateOwner(this.owner);
+      if (this.owner != undefined && this.owner != "") {
+        await promisify(cb => this.contract.updateOwner(this.owner, cb));
       }
     }
   }
 
-  updateArbitrator() {
+  async updateArbitrator() {
+    console.log(this.arbitratorAddress);
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
-        this.contract.updateArbitrator(this.arbitratorAddress);
+      if (this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
+        await promisify(cb => this.contract.updateArbitrator(this.arbitratorAddress, cb));
       }
     }
   }
 
-  updateSeller() {
+  async updateSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.sellerAddress != undefined && this.sellerAddress != "") {
-        this.contract.updateSeller(this.sellerAddress);
+      if (this.sellerAddress != undefined && this.sellerAddress != "") {
+        await promisify(cb => this.contract.updateSeller(this.sellerAddress, cb));
       }
     }
   }
 
-  updateBuyer() {
+  async updateBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.buyerAddress != undefined && this.buyerAddress != "") {
-        this.contract.updateBuyer(this.buyerAddress);
+      if (this.buyerAddress != undefined && this.buyerAddress != "") {
+        await promisify(cb => this.contract.updateBuyer(this.buyerAddress, cb));
       }
     }
   }
 
-  updateArbitratorFees() {
+  async updateArbitratorFees() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.arbitratorFees != undefined && this.arbitratorFees > 0) {
-        this.contract.updateArbitratorFees(this.web3.toBigNumber(this.arbitratorFees));//in wei
+      if (this.arbitratorFees != undefined && this.arbitratorFees > 0) {
+        await promisify(cb => this.contract.updateArbitratorFees(this.web3.toBigNumber(this.arbitratorFees), cb));//in wei
       }
     }
   }
 
-  updateOfferedAmount() {
+  async updateOfferedAmount() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked && this.offeredAmount != undefined && this.offeredAmount > 0) {
-        this.contract.updateOfferedAmount(this.web3.toBigNumber(this.offeredAmount));//in wei
+      if (this.offeredAmount != undefined && this.offeredAmount > 0) {
+        await promisify(cb => this.contract.updateOfferedAmount(this.web3.toBigNumber(this.offeredAmount), cb));//in wei
       }
     }
   }
 
-  signerForArbitratorForBuyer() {
+  async signerForArbitratorForBuyer() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForArbitratorForBuyer();
-      }
+      await promisify(cb => this.contract.signerForArbitratorForBuyer(cb));
     }
   }
 
-  signerForArbitratorForSeller() {
+  async signerForArbitratorForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passphraseForCoinBase);
-      if (isUnlocked) {
-        this.contract.signerForArbitratorForSeller();
-      }
+      await promisify(cb => this.contract.signerForArbitratorForSeller(cb));
     }
   }
 
