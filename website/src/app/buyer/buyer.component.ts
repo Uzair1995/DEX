@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ABI } from '../../ABI.const';
+import { contractAddress } from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper'
 
 declare var require: any;
@@ -46,10 +47,11 @@ export class BuyerComponent implements OnInit {
       this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
     }
     this.coinbase = this.web3.eth.accounts[0];
+    this.LoadContract();
   }
 
-  async LoadContract(ethContractAddress: string) {
-    this.contract = (this.web3.eth.contract(this.contractAbi)).at(ethContractAddress);
+  async LoadContract() {
+    this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
     this.owner = await promisify(cb => this.contract.owner.call(cb));

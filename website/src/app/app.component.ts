@@ -13,6 +13,9 @@ export class AppComponent implements OnInit {
   constructor(public _router: Router) {
   }
   ngOnInit() {
+    
+
+
   }
 
   public navigateToArbitratorScreen() {
