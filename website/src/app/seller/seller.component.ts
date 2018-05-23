@@ -78,30 +78,21 @@ export class SellerComponent implements OnInit {
     }
   }
 
-  depositForSeller() {
+  async depositForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.depositForSeller({ value: this.offeredAmount });//in wei
-      }
+      await promisify(cb => this.contract.depositForSeller({ value: this.offeredAmount }, cb));//in wei
     }
   }
 
-  releaseFundsToSeller() {
+  async releaseFundsToSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.releaseFundsToSeller();
-      }
+      await promisify(cb => this.contract.releaseFundsToSeller(cb));
     }
   }
 
-  raiseDisputeForSeller() {
+  async raiseDisputeForSeller() {
     if (this.contract != undefined) {
-      var isUnlocked = this.web3.personal.unlockAccount(this.web3.eth.defaultAccount, this.passwordForCoinbase);
-      if (isUnlocked) {
-        this.contract.raiseDisputeForSeller(this.web3.toBigNumber(10));
-      }
+      await promisify(cb => this.contract.raiseDisputeForSeller(this.web3.toBigNumber(10),cb));
     }
   }
 
