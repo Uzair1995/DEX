@@ -54,20 +54,52 @@ export class BuyerComponent implements OnInit {
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
-    this.owner = await promisify(cb => this.contract.owner.call(cb));
-    this.arbitratorAddress = await promisify(cb => this.contract.arbitratorAddress.call(cb))
-    this.sellerAddress = await promisify(cb => this.contract.sellerAddress.call(cb));
-    this.buyerAddress = await promisify(cb => this.contract.buyerAddress.call(cb));
-    this.arbitratorFees = await promisify(cb => this.contract.arbitratorFees.call(cb));
-    this.offeredAmount = await promisify(cb => this.contract.offeredAmount.call(cb));
-    this.isBuyerAgreeing = await promisify(cb => this.contract.isBuyerAgreeing.call(cb));
-    this.isSellerAgreeing = await promisify(cb => this.contract.isSellerAgreeing.call(cb));
-    this.isArbitratorAgreeingForBuyer = await promisify(cb => this.contract.isArbitratorAgreeingForBuyer.call(cb));
-    this.isArbitratorAgreeingForSeller = await promisify(cb => this.contract.isArbitratorAgreeingForSeller.call(cb));
-    this.sellerAmountDeposit = await promisify(cb => this.contract.sellerAmountDeposit.call(cb));
-    this.buyerSecurityDeposit = await promisify(cb => this.contract.buyerSecurityDeposit.call(cb));
-    this.sellerDisputeRaise = await promisify(cb => this.contract.sellerDisputeRaise.call(cb));
-    this.buyerDisputeRaise = await promisify(cb => this.contract.buyerDisputeRaise.call(cb));
+    this.owner = promisify(cb => this.contract.owner.call(cb));
+    this.arbitratorAddress = promisify(cb => this.contract.arbitratorAddress.call(cb))
+    this.sellerAddress = promisify(cb => this.contract.sellerAddress.call(cb));
+    this.buyerAddress = promisify(cb => this.contract.buyerAddress.call(cb));
+    this.arbitratorFees = promisify(cb => this.contract.arbitratorFees.call(cb));
+    this.offeredAmount = promisify(cb => this.contract.offeredAmount.call(cb));
+    this.isBuyerAgreeing = promisify(cb => this.contract.isBuyerAgreeing.call(cb));
+    this.isSellerAgreeing = promisify(cb => this.contract.isSellerAgreeing.call(cb));
+    this.isArbitratorAgreeingForBuyer = promisify(cb => this.contract.isArbitratorAgreeingForBuyer.call(cb));
+    this.isArbitratorAgreeingForSeller = promisify(cb => this.contract.isArbitratorAgreeingForSeller.call(cb));
+    this.sellerAmountDeposit = promisify(cb => this.contract.sellerAmountDeposit.call(cb));
+    this.buyerSecurityDeposit = promisify(cb => this.contract.buyerSecurityDeposit.call(cb));
+    this.sellerDisputeRaise = promisify(cb => this.contract.sellerDisputeRaise.call(cb));
+    this.buyerDisputeRaise = promisify(cb => this.contract.buyerDisputeRaise.call(cb));
+    await Promise.all([
+      this.owner,
+      this.arbitratorAddress,
+      this.sellerAddress,
+      this.buyerAddress,
+      this.arbitratorFees,
+      this.offeredAmount,
+      this.isBuyerAgreeing,
+      this.isSellerAgreeing,
+      this.isArbitratorAgreeingForBuyer,
+      this.isArbitratorAgreeingForSeller,
+      this.sellerAmountDeposit,
+      this.buyerSecurityDeposit,
+      this.sellerDisputeRaise,
+      this.buyerDisputeRaise
+    ]).then(values=>{
+      this.owner = values[0];
+      this.arbitratorAddress = values[1];
+      this.sellerAddress= values[2];
+      this.buyerAddress= values[3];
+      this.arbitratorFees= values[4];
+      this.offeredAmount= values[5];
+      this.isBuyerAgreeing= values[6];
+      this.isSellerAgreeing= values[7];
+      this.isArbitratorAgreeingForBuyer= values[8];
+      this.isArbitratorAgreeingForSeller= values[9];
+      this.sellerAmountDeposit= values[10];
+      this.buyerSecurityDeposit= values[11];
+      this.sellerDisputeRaise= values[12];
+      this.buyerDisputeRaise= values[13];
+    })
+
   }
 
   async signerForBuyer() {
