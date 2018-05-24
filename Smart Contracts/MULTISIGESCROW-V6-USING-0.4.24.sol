@@ -96,7 +96,7 @@ contract MultiSigWallet {
     function depositForSeller() external payable {
         require(msg.sender==sellerAddress);
         require(sellerAmountDeposit==0);
-        require(msg.value>0);
+        require(msg.value>0 && msg.value<=offeredAmount);
 
         sellerAmountDeposit = msg.value;
         emit RecievedFromSeller(sellerAddress, msg.value);
@@ -104,7 +104,7 @@ contract MultiSigWallet {
     function depositForBuyer() external payable {
         require(msg.sender==buyerAddress);
         require(buyerSecurityDeposit==0);
-        require(msg.value>0);
+        require(msg.value>0 && msg.value<=offeredAmount);
         
         buyerSecurityDeposit = msg.value;
         emit RecievedFromBuyer(buyerAddress, msg.value);
