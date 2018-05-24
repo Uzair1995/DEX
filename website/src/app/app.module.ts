@@ -7,6 +7,7 @@ import { BuyerComponent } from './buyer/buyer.component';
 import { SellerComponent } from './seller/seller.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import "rxjs";
 
 @NgModule({
   declarations: [

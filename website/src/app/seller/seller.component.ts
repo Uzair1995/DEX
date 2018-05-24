@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ABI } from '../../ABI.const';
 import { contractAddress } from 'addresses.const';
-import { promisify } from 'app/wrappers/wrapper'
+import { promisify } from 'app/wrappers/wrapper';
+import { LoadingBar } from 'app/shared/loading';
+
 
 declare var require: any;
 declare var window: any;
@@ -57,6 +59,7 @@ export class SellerComponent implements OnInit {
   }
 
   async LoadContract() {
+    LoadingBar.emit(true);
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
     this.owner = promisify(cb => this.contract.owner.call(cb));
@@ -104,6 +107,7 @@ export class SellerComponent implements OnInit {
       this.buyerSecurityDeposit= values[11];
       this.sellerDisputeRaise= values[12];
       this.buyerDisputeRaise= values[13];
+      LoadingBar.emit(false);
     })
 
   }

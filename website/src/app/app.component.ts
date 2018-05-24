@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ABI } from 'ABI.const';
 import {contractAddress} from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper'
+import { LoadingBar } from './shared/loading';
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
@@ -19,6 +20,8 @@ export class AppComponent implements OnInit {
   coinbase: string;
   contract: any;
   passphraseForCoinBase: string = "mparsec123"
+  isLoading:boolean = false;
+  isSubscribeAlive:boolean = true;
 
   public owner;
   public sellerAddress;
@@ -49,7 +52,11 @@ export class AppComponent implements OnInit {
     this.coinbase = this.web3.eth.accounts[0];
     this.LoadContract();
     
+    LoadingBar.takeWhile(()=>this.isSubscribeAlive).subscribe(res=>this.isLoading = res);
+  }
 
+  ngOnDestroy(){
+    this.isSubscribeAlive = false;
   }
 
   async LoadContract() {

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ABI } from 'ABI.const';
 import { contractAddress } from 'addresses.const';
-import { promisify } from 'app/wrappers/wrapper'
+import { promisify } from 'app/wrappers/wrapper';
+import { LoadingBar } from 'app/shared/loading';
+
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
@@ -53,6 +55,7 @@ export class ArbitratorComponent implements OnInit {
 
 
   async LoadContract() {
+    LoadingBar.emit(true);
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
 
@@ -101,6 +104,7 @@ export class ArbitratorComponent implements OnInit {
       this.buyerSecurityDeposit= values[11];
       this.sellerDisputeRaise= values[12];
       this.buyerDisputeRaise= values[13];
+      LoadingBar.emit(false);
     })
 
   }
