@@ -1,6 +1,6 @@
-<div style="background-color:#ffffff ;">
-<h1>Buyer</h1>
-<div *ngIf="contractDetails.length!=0" class="container">
+<div class="well" style="background-color:#ffffff ;">
+  <h1>Buyer</h1>
+  <div class="container">
     <div class="row">
       <label class="col-6 text-right control-label">Owner Address:</label>
       <div class="col-6 text-left">{{owner}}</div>
@@ -58,48 +58,48 @@
       <div class="col-6 text-left">{{buyerDisputeRaise}}</div>
     </div>
     <div class="row">
-        <label class="col-6 text-right control-label">Raise Buyer Dispute:</label>
-        <button id="button" (click)="raiseDisputeForBuyer()">Raise Dispute!</button>
-      </div>
+      <label class="col-6 text-right control-label">Raise Buyer Dispute:</label>
+      <button id="button" (click)="raiseDisputeForBuyer()">Raise Dispute!</button>
+    </div>
     <div class="row">
       <label class="col-6 text-right control-label">Deposit for Buyer:</label>
       <button id="button" (click)="depositForBuyer()">Deposit</button>
     </div>
     <div class="row">
       <label class="col-6 text-right control-label">Release funds to Buyer:</label>
-      <button id="button" (click)="releaseFundsToBuyer()">Release funds to Seller</button>
+      <button id="button" class="btn btn-primary" (click)="releaseFundsToBuyer()">Release funds to Seller</button>
     </div>
-    </div>
-    
+  </div>
+
   <!-- <label class="col-lg-2 control-label">Owner Address:</label><span>{{owner}}</span> -->
-    <!-- <input type="text" [(ngModel)]="owner">
+  <!-- <input type="text" [(ngModel)]="owner">
     <button id="button" (click)="updateOwner()">Update</button> -->
-    <!-- <br> -->
+  <!-- <br> -->
 
-    <!-- <label class="col-lg-2 control-label">Arbitrator Address:</label><span>{{arbitratorAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="arbitratorAddress">
+  <!-- <label class="col-lg-2 control-label">Arbitrator Address:</label><span>{{arbitratorAddress}}</span> -->
+  <!-- <input type="text" [(ngModel)]="arbitratorAddress">
     <button id="button" (click)="updateArbitrator()">Update</button> -->
-    <!-- <br> -->
+  <!-- <br> -->
 
-    <!-- <label class="col-lg-2 control-label">Seller Address:</label><span>{{sellerAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="sellerAddress">
+  <!-- <label class="col-lg-2 control-label">Seller Address:</label><span>{{sellerAddress}}</span> -->
+  <!-- <input type="text" [(ngModel)]="sellerAddress">
     <button id="button" (click)="updateSeller()">Update</button> -->
-    <!-- <br> -->
+  <!-- <br> -->
 
-    <!-- <label class="col-lg-2 control-label">Buyer Address:</label><span>{{buyerAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="buyerAddress">
+  <!-- <label class="col-lg-2 control-label">Buyer Address:</label><span>{{buyerAddress}}</span> -->
+  <!-- <input type="text" [(ngModel)]="buyerAddress">
     <button id="button" (click)="updateBuyer()">Update</button> -->
-    <!-- <br> -->
+  <!-- <br> -->
 
-    <!-- <label class="col-lg-2 control-label">Arbitrator Fees:</label><span>{{arbitratorFees}}</span> -->
-    <!-- <input type="text" [(ngModel)]="arbitratorFees">
+  <!-- <label class="col-lg-2 control-label">Arbitrator Fees:</label><span>{{arbitratorFees}}</span> -->
+  <!-- <input type="text" [(ngModel)]="arbitratorFees">
     <button id="button" (click)="updateArbitratorFees()">Update</button> -->
-    <!-- <br> -->
+  <!-- <br> -->
 
-    <!-- <label class="col-lg-2 control-label">Trade Amount:</label><span>{{offeredAmount}}</span> -->
-    <!-- <input type="text" [(ngModel)]="offeredAmount">
+  <!-- <label class="col-lg-2 control-label">Trade Amount:</label><span>{{offeredAmount}}</span> -->
+  <!-- <input type="text" [(ngModel)]="offeredAmount">
     <button id="button" (click)="updateOfferedAmount()">Update</button> -->
-    <!-- <br>
+  <!-- <br>
 
   <label class="col-lg-2 control-label">Seller Deposited Amount:</label> {{sellerAmountDeposit}}<br>
   <label class="col-lg-2 control-label">Buyer Security Deposit:</label> {{buyerSecurityDeposit}}<br>

@@ -3,7 +3,7 @@
   <h1>DEX</h1>
   <router-outlet></router-outlet>
   <div class="row col-12" class="btn-group">
-    <button (click)="navigateToArbitratorScreen()" >Arbitrate</button>
+    <button (click)="navigateToArbitratorScreen()" >Arbitrate</button> <!--*ngIf="sellerDisputeRaise || buyerDisputeRaise"-->
     <button (click)="navigateToBuyerScreen()">Buy</button>
     <button (click)="navigateToSellerScreen()">Sell</button>
   </div>

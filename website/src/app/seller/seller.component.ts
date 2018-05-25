@@ -23,7 +23,6 @@ export class SellerComponent implements OnInit {
   coinbase: string;
   contract: any;
   passwordForCoinbase = "mparsec123";
-  contractDetails = new Array();
 
 
   public owner;
@@ -92,7 +91,6 @@ export class SellerComponent implements OnInit {
       this.sellerDisputeRaise,
       this.buyerDisputeRaise
     ]).then(values=>{
-      this.contractDetails = values;
       this.owner = values[0];
       this.arbitratorAddress = values[1];
       this.sellerAddress= values[2];
