@@ -64,14 +64,14 @@
             <tr>
               <td>Seller Deposited Amount</td>
               <td>{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</td>
-              <td></td>
+              <td>
+                <button id="button" class="btn" (click)="depositForSeller()">Deposit into Escrow!</button>
+              </td>
             </tr>
             <tr>
               <td>Buyer Security Deposit</td>
               <td>{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</td>
-              <td>
-                <button id="button" class="btn" (click)="depositForSeller()">Deposit into Escrow!</button>
-              </td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -120,14 +120,14 @@
             <tr>
               <td>Dispute Raised By Seller</td>
               <td>{{sellerDisputeRaise}}</td>
-              <td></td>
+              <td>
+                <button id="button" class="btn" (click)="raiseDisputeForSeller()">Raise Dispute!</button>
+              </td>
             </tr>
             <tr>
               <td>Dispute Raised By Buyer</td>
               <td>{{buyerDisputeRaise}}</td>
-              <td>
-                <button id="button" class="btn" (click)="raiseDisputeForSeller()">Raise Dispute!</button>
-              </td>
+              <td></td>
             </tr>
           </tbody>
         </table>
