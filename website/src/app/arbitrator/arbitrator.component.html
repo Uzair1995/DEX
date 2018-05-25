@@ -21,19 +21,19 @@
       </div>
       <div class="row">
         <label class="col-6 text-right control-label">Arbitrator Fees:</label>
-        <div class="col-6 text-left">{{arbitratorFees}}</div>
+        <div class="col-6 text-left">{{web3.fromWei(arbitratorFees,'ether')}} Ether</div>
       </div>
       <div class="row">
         <label class="col-6 text-right control-label">Trade Amount:</label>
-        <div class="col-6 text-left">{{offeredAmount}}</div>
+        <div class="col-6 text-left">{{web3.fromWei(offeredAmount,'ether')}} Ether</div>
       </div>
       <div class="row">
         <label class="col-6 text-right control-label">Seller Deposited Amount:</label>
-        <div class="col-6 text-left">{{sellerAmountDeposit}}</div>
+        <div class="col-6 text-left">{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</div>
       </div>
       <div class="row">
         <label class="col-6 text-right control-label">Buyer Security Deposit:</label>
-        <div class="col-6 text-left">{{buyerSecurityDeposit}}</div>
+        <div class="col-6 text-left">{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</div>
       </div>
       <div class="row">
         <label class="col-6 text-right control-label">Is Buyer Agreeing:</label>
