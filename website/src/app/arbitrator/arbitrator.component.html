@@ -2,8 +2,15 @@
   <div class="container">
     <div class="card text-center">
 
-      <div class="card-header">
-        Arbitrator
+      <div class="card-header bg-success">
+        <div>
+          <span style="font-weight: bold; font-size: 1.5rem; padding-left: 2.5rem;">Arbitrate</span>
+          <span style="float: right;">
+            <button class="btn" (click)="LoadContract()">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </span>
+        </div>
       </div>
 
       <div class="card-body" *ngIf="!isLoading">
@@ -13,29 +20,24 @@
             <tr>
               <th>Users</th>
               <th>Addresses</th>
-              <th>Actions Allowed</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Owner</td>
               <td>{{owner}}</td>
-              <td></td>
             </tr>
             <tr>
               <td>Arbitrator</td>
               <td>{{arbitratorAddress}}</td>
-              <td></td>
             </tr>
             <tr>
               <td>Seller</td>
               <td>{{sellerAddress}}</td>
-              <td></td>
             </tr>
             <tr>
               <td>Buyer</td>
               <td>{{buyerAddress}}</td>
-              <td></td>
             </tr>
           </tbody>
         </table>
@@ -43,9 +45,9 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th>Fees And Amounts</th>
-              <th>Value</th>
-              <th>Actions Allowed</th>
+              <th width="40%">Fees And Amounts</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
             </tr>
           </thead>
           <tbody>
@@ -75,9 +77,9 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th>Signatures</th>
-              <th>Value</th>
-              <th>Actions Allowed</th>
+              <th width="40%">Signatures</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
             </tr>
           </thead>
           <tbody>
@@ -111,9 +113,9 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th>Disputes</th>
-              <th>Value</th>
-              <th>Actions Allowed</th>
+              <th width="40%">Disputes</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +132,7 @@
           </tbody>
         </table>
 
-        
+
       </div>
 
     </div>

@@ -43,6 +43,8 @@ export class SellerComponent implements OnInit {
   public sellerDisputeRaise;
   public buyerDisputeRaise;
 
+  public isLoading = false;
+
   constructor() { }
 
 
@@ -58,6 +60,7 @@ export class SellerComponent implements OnInit {
   }
 
   async LoadContract() {
+    this.isLoading = true;
     LoadingBar.emit(true);
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
@@ -106,6 +109,7 @@ export class SellerComponent implements OnInit {
       this.sellerDisputeRaise= values[12];
       this.buyerDisputeRaise= values[13];
       LoadingBar.emit(false);
+      this.isLoading = false;
     })
 
   }

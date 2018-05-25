@@ -1,142 +1,150 @@
 <div class="row">
-    <div class="container">
-      <div class="card text-center">
-  
-        <div class="card-header">
-          Buy
-        </div>
-  
-        <div class="card-body" *ngIf="!isLoading">
-  
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Users</th>
-                <th>Addresses</th>
-                <th>Actions Allowed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Owner</td>
-                <td>{{owner}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Arbitrator</td>
-                <td>{{arbitratorAddress}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Seller</td>
-                <td>{{sellerAddress}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Buyer</td>
-                <td>{{buyerAddress}}</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-  
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Fees And Amounts</th>
-                <th>Value</th>
-                <th>Actions Allowed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Arbitrator Fees</td>
-                <td>{{web3.fromWei(arbitratorFees,'ether')}} Ether</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Trade Amount</td>
-                <td>{{web3.fromWei(offeredAmount,'ether')}} Ether</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Seller Deposited Amount</td>
-                <td>{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Buyer Security Deposit</td>
-                <td>{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</td>
-                <td><button id="button" class="btn" (click)="depositForBuyer()">Deposit into Escrow!</button></td>
-              </tr>
-            </tbody>
-          </table>
-  
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Signatures</th>
-                <th>Value</th>
-                <th>Actions Allowed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Is Buyer Agreeing</td>
-                <td>{{isBuyerAgreeing}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Is Seller Agreeing</td>
-                <td>{{isSellerAgreeing}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Is Arbitrator Agreeing For Buyer</td>
-                <td>{{isArbitratorAgreeingForBuyer}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Is Arbitrator Agreeing For Seller</td>
-                <td>{{isArbitratorAgreeingForSeller}}</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-  
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Disputes</th>
-                <th>Value</th>
-                <th>Actions Allowed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Dispute Raised By Seller</td>
-                <td>{{sellerDisputeRaise}}</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Dispute Raised By Buyer</td>
-                <td>{{buyerDisputeRaise}}</td>
-                <td><button id="button" class="btn" (click)="raiseDisputeForBuyer()">Raise Dispute!</button></td>
-              </tr>
-            </tbody>
-          </table>
+  <div class="container">
+    <div class="card text-center">
 
-          <table class="table">
-              <thead class="thead-light">
-                <tr>
-                  <th><button id="button" class="btn btn-primary" (click)="releaseFundsToBuyer()">Try Release Funds From Escrow To Your Address!</button></th>
-                </tr>
-              </thead>
-            </table>
-  
-          
+      <div class="card-header bg-success">
+        <div>
+          <span style="font-weight: bold; font-size: 1.5rem; padding-left: 2.5rem;">Buy</span>
+          <span style="float: right;">
+            <button class="btn" (click)="LoadContract()">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </span>
         </div>
-  
       </div>
+
+      <div class="card-body" *ngIf="!isLoading">
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>Users</th>
+              <th>Addresses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Owner</td>
+              <td>{{owner}}</td>
+            </tr>
+            <tr>
+              <td>Arbitrator</td>
+              <td>{{arbitratorAddress}}</td>
+            </tr>
+            <tr>
+              <td>Seller</td>
+              <td>{{sellerAddress}}</td>
+            </tr>
+            <tr>
+              <td>Buyer</td>
+              <td>{{buyerAddress}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Fees And Amounts</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Arbitrator Fees</td>
+              <td>{{web3.fromWei(arbitratorFees,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Trade Amount</td>
+              <td>{{web3.fromWei(offeredAmount,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Seller Deposited Amount</td>
+              <td>{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Buyer Security Deposit</td>
+              <td>{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</td>
+              <td>
+                <button id="button" class="btn" (click)="depositForBuyer()">Deposit into Escrow!</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Signatures</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Is Buyer Agreeing</td>
+              <td>{{isBuyerAgreeing}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Is Seller Agreeing</td>
+              <td>{{isSellerAgreeing}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Is Arbitrator Agreeing For Buyer</td>
+              <td>{{isArbitratorAgreeingForBuyer}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Is Arbitrator Agreeing For Seller</td>
+              <td>{{isArbitratorAgreeingForSeller}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Disputes</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dispute Raised By Seller</td>
+              <td>{{sellerDisputeRaise}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Dispute Raised By Buyer</td>
+              <td>{{buyerDisputeRaise}}</td>
+              <td>
+                <button id="button" class="btn" (click)="raiseDisputeForBuyer()">Raise Dispute!</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>
+                <button id="button" class="btn btn-primary" (click)="releaseFundsToBuyer()">Try Release Funds From Escrow To Your Address!</button>
+              </th>
+            </tr>
+          </thead>
+        </table>
+
+
+      </div>
+
     </div>
   </div>
+</div>
