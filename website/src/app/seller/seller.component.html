@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <label class="col-6 text-right control-label">Raise Seller Dispute:</label>
-        <button id="button" (click)="raiseDisputeForSeller()">Raise Dispute!</button>
+        <button id="button" (click)="raiseDisputeForSeller()">Raise Dispute!</button> <span *ngIf="requestForDispute">Your request for dispute has been raised!</span>
       </div>
     <div class="row">
       <label class="col-6 text-right control-label">Deposit for Seller:</label>
