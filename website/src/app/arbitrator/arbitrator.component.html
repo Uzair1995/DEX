@@ -1,134 +1,140 @@
-<div style="background-color:#ffffff ;">
-<br>
-  <h1>Arbitrator</h1>
-  
-  <div *ngIf="contractDetails.length!=0" class="container">
-      <div class="row">
-        <label class="col-6 text-right control-label">Owner Address:</label>
-        <div class="col-6 text-left">{{owner}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Arbitrator Address:</label>
-        <div class="col-6 text-left">{{arbitratorAddress}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Seller Address:</label>
-        <div class="col-6 text-left">{{sellerAddress}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Buyer Address:</label>
-        <div class="col-6 text-left">{{buyerAddress}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Arbitrator Fees:</label>
-        <div class="col-6 text-left">{{web3.fromWei(arbitratorFees,'ether')}} Ether</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Trade Amount:</label>
-        <div class="col-6 text-left">{{web3.fromWei(offeredAmount,'ether')}} Ether</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Seller Deposited Amount:</label>
-        <div class="col-6 text-left">{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Buyer Security Deposit:</label>
-        <div class="col-6 text-left">{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Is Buyer Agreeing:</label>
-        <div class="col-6 text-left">{{isBuyerAgreeing}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Is Seller Agreeing:</label>
-        <div class="col-6 text-left">{{isSellerAgreeing}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Is Arbitrator Agreeing For Buyer:</label>
-        <div class="col-6 text-left">{{isArbitratorAgreeingForBuyer}}</div>
-      </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Is Arbitrator Agreeing For Seller:</label>
-        <div class="col-6 text-left">{{isArbitratorAgreeingForSeller}}</div>
-      </div>
-      <div class="row">
-          <label class="col-6 text-right control-label">Arbitrator's sign for Buyer:</label>
-          <button id="button" (click)="signerForArbitratorForBuyer()">Sign For Buyer</button>
+<div class="row">
+  <div class="container">
+    <div class="card text-center">
+
+      <div class="card-header bg-success">
+        <div>
+          <span style="font-weight: bold; font-size: 1.5rem; padding-left: 2.5rem;">Arbitrate</span>
+          <span style="float: right;">
+            <button class="btn" (click)="LoadContract()">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </span>
         </div>
-        <div class="row">
-            <label class="col-6 text-right control-label">Arbitrator's sign for Seller:</label>
-            <button id="button" (click)="signerForArbitratorForSeller()">Sign For Seller</button>
-          </div>
-
-      <div class="row">
-        <label class="col-6 text-right control-label">Seller Raised the dispute:</label>
-        <div class="col-6 text-left">{{sellerDisputeRaise}}</div>
       </div>
-      <div class="row">
-        <label class="col-6 text-right control-label">Buyer Raised the dispute:</label>
-        <div class="col-6 text-left">{{buyerDisputeRaise}}</div>
+
+      <div class="card-body" *ngIf="!isLoading">
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>Users</th>
+              <th>Addresses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Owner</td>
+              <td>{{owner}}</td>
+            </tr>
+            <tr>
+              <td>Arbitrator</td>
+              <td>{{arbitratorAddress}}</td>
+            </tr>
+            <tr>
+              <td>Seller</td>
+              <td>{{sellerAddress}}</td>
+            </tr>
+            <tr>
+              <td>Buyer</td>
+              <td>{{buyerAddress}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Fees And Amounts</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Arbitrator Fees</td>
+              <td>{{web3.fromWei(arbitratorFees,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Trade Amount</td>
+              <td>{{web3.fromWei(offeredAmount,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Seller Deposited Amount</td>
+              <td>{{web3.fromWei(sellerAmountDeposit,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Buyer Security Deposit</td>
+              <td>{{web3.fromWei(buyerSecurityDeposit,'ether')}} Ether</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Signatures</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Is Buyer Agreeing</td>
+              <td>{{isBuyerAgreeing}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Is Seller Agreeing</td>
+              <td>{{isSellerAgreeing}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Is Arbitrator Agreeing For Buyer</td>
+              <td>{{isArbitratorAgreeingForBuyer}}</td>
+              <td>
+                <button id="button" class="btn" (click)="signerForArbitratorForBuyer()">Sign For Buyer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Is Arbitrator Agreeing For Seller</td>
+              <td>{{isArbitratorAgreeingForSeller}}</td>
+              <td>
+                <button id="button" class="btn" (click)="signerForArbitratorForSeller()">Sign For Seller</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th width="40%">Disputes</th>
+              <th width="20%">Value</th>
+              <th width="40%">Actions Allowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dispute Raised By Seller</td>
+              <td>{{sellerDisputeRaise}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Dispute Raised By Buyer</td>
+              <td>{{buyerDisputeRaise}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+
       </div>
-        </div>
 
-
-    <!-- <label class="col-lg-2 control-label">Owner Address:</label><span>{{owner}}</span> -->
-    <!-- <input type="text" [(ngModel)]="owner">
-    <button id="button" (click)="updateOwner()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Arbitrator Address:</label><span>{{arbitratorAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="arbitratorAddress">
-    <button id="button" (click)="updateArbitrator()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Seller Address:</label><span>{{sellerAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="sellerAddress">
-    <button id="button" (click)="updateSeller()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Buyer Address:</label><span>{{buyerAddress}}</span> -->
-    <!-- <input type="text" [(ngModel)]="buyerAddress">
-    <button id="button" (click)="updateBuyer()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Arbitrator Fees:</label><span>{{arbitratorFees}}</span> -->
-    <!-- <input type="text" [(ngModel)]="arbitratorFees">
-    <button id="button" (click)="updateArbitratorFees()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Trade Amount:</label><span>{{offeredAmount}}</span> -->
-    <!-- <input type="text" [(ngModel)]="offeredAmount">
-    <button id="button" (click)="updateOfferedAmount()">Update</button> -->
-    <!-- <br> -->
-
-    <!-- <label class="col-lg-2 control-label">Seller Deposited Amount:</label> {{sellerAmountDeposit}}
-    <br>
-
-    <label class="col-lg-2 control-label">Buyer Security Deposit:</label> {{buyerSecurityDeposit}}
-    <br>
-
-    <label class="col-lg-2 control-label">Is Buyer Agreeing:</label> {{isBuyerAgreeing}}
-    <br>
-
-    <label class="col-lg-2 control-label">Is Seller Agreeing:</label> {{isSellerAgreeing}}
-    <br>
-
-    <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Buyer:</label> {{isArbitratorAgreeingForBuyer}}
-    <button id="button" (click)="signerForArbitratorForBuyer()">Sign</button>
-    <br>
-
-    <label class="col-lg-2 control-label">Is Arbitrator Agreeing For Seller:</label> {{isArbitratorAgreeingForSeller}}
-    <button id="button" (click)="signerForArbitratorForSeller()">Sign</button>
-    <br>
-
-    <label class="col-lg-2 control-label">Seller Raised the dispute:</label> {{sellerDisputeRaise}}
-    <br>
-    <label class="col-lg-2 control-label">Buyer Raised the dispute:</label> {{buyerDisputeRaise}}
-    <br>
-
-    <br>
-  </p>
-  <br>
-  <br>
-  <br>
-</div> -->
+    </div>
+  </div>
+</div>

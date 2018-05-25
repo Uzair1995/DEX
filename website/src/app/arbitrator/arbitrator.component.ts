@@ -21,7 +21,6 @@ export class ArbitratorComponent implements OnInit {
   coinbase: string;
   contract: any;
   passphraseForCoinBase: string = "mparsec123"
-  contractDetails = new Array();
 
   public owner;
   public sellerAddress;
@@ -38,6 +37,7 @@ export class ArbitratorComponent implements OnInit {
   public isArbitratorAgreeingForSeller;
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
+  public isLoading = false;
 
   constructor() { }
 
@@ -55,6 +55,7 @@ export class ArbitratorComponent implements OnInit {
 
 
   async LoadContract() {
+    this.isLoading = true;
     LoadingBar.emit(true);
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
@@ -88,23 +89,26 @@ export class ArbitratorComponent implements OnInit {
       this.buyerSecurityDeposit,
       this.sellerDisputeRaise,
       this.buyerDisputeRaise
-    ]).then(values=>{
-      this.contractDetails = values
+    ]).then(values => {
       this.owner = values[0];
       this.arbitratorAddress = values[1];
-      this.sellerAddress= values[2];
-      this.buyerAddress= values[3];
-      this.arbitratorFees= values[4];
-      this.offeredAmount= values[5];
-      this.isBuyerAgreeing= values[6];
-      this.isSellerAgreeing= values[7];
-      this.isArbitratorAgreeingForBuyer= values[8];
-      this.isArbitratorAgreeingForSeller= values[9];
-      this.sellerAmountDeposit= values[10];
-      this.buyerSecurityDeposit= values[11];
-      this.sellerDisputeRaise= values[12];
-      this.buyerDisputeRaise= values[13];
+      this.sellerAddress = values[2];
+      this.buyerAddress = values[3];
+      this.arbitratorFees = values[4];
+      this.offeredAmount = values[5];
+      this.isBuyerAgreeing = values[6];
+      this.isSellerAgreeing = values[7];
+      this.isArbitratorAgreeingForBuyer = values[8];
+      this.isArbitratorAgreeingForSeller = values[9];
+      this.sellerAmountDeposit = values[10];
+      this.buyerSecurityDeposit = values[11];
+      this.sellerDisputeRaise = values[12];
+      this.buyerDisputeRaise = values[13];
+
+
       LoadingBar.emit(false);
+      this.isLoading = false;
+
     })
 
   }

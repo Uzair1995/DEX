@@ -21,7 +21,6 @@ export class BuyerComponent implements OnInit {
   coinbase: string;
   contract: any;
   passphraseForCoinBase: string = "mparsec123"
-  contractDetails = new Array();
 
 
   public owner;
@@ -39,6 +38,7 @@ export class BuyerComponent implements OnInit {
   public buyerSecurityDeposit;
   public sellerDisputeRaise;
   public buyerDisputeRaise;
+  public isLoading = false;
 
   constructor() { }
 
@@ -54,6 +54,7 @@ export class BuyerComponent implements OnInit {
   }
 
   async LoadContract() {
+    this.isLoading = true;
     LoadingBar.emit(true);
     this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
     this.web3.eth.defaultAccount = this.coinbase;
@@ -88,7 +89,6 @@ export class BuyerComponent implements OnInit {
       this.sellerDisputeRaise,
       this.buyerDisputeRaise
     ]).then(values=>{
-      this.contractDetails = values;
       this.owner = values[0];
       this.arbitratorAddress = values[1];
       this.sellerAddress= values[2];
@@ -104,6 +104,7 @@ export class BuyerComponent implements OnInit {
       this.sellerDisputeRaise= values[12];
       this.buyerDisputeRaise= values[13];
       LoadingBar.emit(false);
+      this.isLoading = false;
     })
 
   }
