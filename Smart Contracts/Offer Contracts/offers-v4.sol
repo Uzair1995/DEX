@@ -13,11 +13,11 @@ contract OffersContract {
         uint arbitratorFee,
         bool isActive);
     
+    
     struct SellerFiatAccount {
         string accountNumber;
         string bankName;
     }
-    
     struct Offer {
         string fiatCurrency;
         SellerFiatAccount sellerFiatAccount;
@@ -30,8 +30,10 @@ contract OffersContract {
         bool isActive;
     }
     
+    
     mapping (address => Offer) offers;
     address [] public currentOffersAddresses;
+    
     
     function placeSellOffer(
         string _fiatCurrency,
@@ -77,6 +79,6 @@ contract OffersContract {
     }
     
     function getCurrentOffersCount() view public returns(uint) {
-        return (currentOffersAddresses.length);
+        return currentOffersAddresses.length;
     }
 }
