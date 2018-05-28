@@ -134,7 +134,7 @@ export class SellerComponent implements OnInit {
 
   async raiseDisputeForSeller() {
     if (this.contract != undefined) {
-      await promisify(cb => this.contract.raiseDisputeForSeller(this.web3.toBigNumber(10),cb));
+      await promisify(cb => this.contract.raiseDisputeForSeller(cb));//this.web3.toBigNumber(10),
     }
   }
 

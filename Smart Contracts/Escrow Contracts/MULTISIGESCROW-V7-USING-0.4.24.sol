@@ -194,7 +194,6 @@ contract MultiSigWallet {
     function raiseDisputeForSeller() external {
         require(msg.sender==sellerAddress);
         require(offeredAmount!=0);
-        require(buyerSecurityDeposit==offeredAmount);
         require(sellerAmountDeposit==offeredAmount);
         
         sellerDisputeRaise = true;
@@ -204,7 +203,6 @@ contract MultiSigWallet {
         require(msg.sender==buyerAddress);
         require(offeredAmount!=0);
         require(buyerSecurityDeposit==offeredAmount);
-        require(sellerAmountDeposit==offeredAmount);
        
         buyerDisputeRaise = true;
     }
