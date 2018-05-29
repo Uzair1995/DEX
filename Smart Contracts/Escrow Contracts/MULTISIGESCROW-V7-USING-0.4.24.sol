@@ -118,7 +118,7 @@ contract MultiSigWallet {
     
     //call these functions without any value to release funds either to buyer or seller
     function releaseFundsToBuyer() external payable {
-        require(isArbitratorAgreeingForBuyer && isSellerAgreeing);
+        require(isArbitratorAgreeingForBuyer || isSellerAgreeing);
         require(sellerAmountDeposit!=0 && buyerSecurityDeposit!=0);
         require(buyerSecurityDeposit==offeredAmount);
         
@@ -136,7 +136,7 @@ contract MultiSigWallet {
     }
     
     function releaseFundsToSeller() external payable {
-        require(isArbitratorAgreeingForSeller && isBuyerAgreeing);
+        require(isArbitratorAgreeingForSeller || isBuyerAgreeing);
         require(sellerAmountDeposit!=0 && buyerSecurityDeposit!=0);
         require(sellerAmountDeposit==offeredAmount);
 
