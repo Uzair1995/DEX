@@ -8,6 +8,7 @@ import { SellerComponent } from './seller/seller.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import "rxjs";
+import { UseraccountComponent } from './useraccount/useraccount.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import "rxjs";
     ArbitratorComponent,
     
     BuyerComponent,
-    SellerComponent
+    SellerComponent,
+    UseraccountComponent
   ],
   imports: [
     BrowserModule,
