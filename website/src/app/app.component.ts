@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import {contractAddress} from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper'
 import { LoadingBar } from './shared/loading';
 import { EscrowContract_ABI } from 'ABI.const';
+import { EscrowContract_Address } from 'addresses.const';
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   async LoadContract() {
-    this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
+    this.contract = (this.web3.eth.contract(this.contractAbi)).at(EscrowContract_Address);
     this.web3.eth.defaultAccount = this.coinbase;
 
     this.sellerDisputeRaise = await promisify(cb => this.contract.sellerDisputeRaise.call(cb));
@@ -77,6 +77,10 @@ export class AppComponent implements OnInit {
   }
   public navigateToSellerScreen() {
     this._router.navigate(['sellerscreen']);
+  }
+
+  public navigateToOffersScreen() {
+    this._router.navigate(['offersscreen']);
   }
 
 }

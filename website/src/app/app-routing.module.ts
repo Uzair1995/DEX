@@ -5,6 +5,7 @@ import { ArbitratorComponent } from 'app/arbitrator/arbitrator.component';
 import { BuyerComponent } from 'app/buyer/buyer.component';
 import { SellerComponent } from 'app/seller/seller.component';
 import { UseraccountComponent } from './useraccount/useraccount.component';
+import { OffersComponent } from './offers/offers.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path : 'useraccount',
     component : UseraccountComponent
+  },
+  {
+    path : 'offersscreen',
+    component : OffersComponent
   }
 ];
 

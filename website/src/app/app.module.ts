@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import "rxjs";
 import { UseraccountComponent } from './useraccount/useraccount.component';
+import { OffersComponent } from './offers/offers.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UseraccountComponent } from './useraccount/useraccount.component';
     
     BuyerComponent,
     SellerComponent,
-    UseraccountComponent
+    UseraccountComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { contractAddress } from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper';
 import { LoadingBar } from 'app/shared/loading';
 import { EscrowContract_ABI } from 'ABI.const';
+import { EscrowContract_Address } from 'addresses.const';
 
 declare var require: any;
 declare var window: any;
@@ -42,7 +42,6 @@ export class ArbitratorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     if (web3 != undefined) {
       this.web3 = web3;
     }
@@ -57,7 +56,7 @@ export class ArbitratorComponent implements OnInit {
   async LoadContract() {
     this.isLoading = true;
     LoadingBar.emit(true);
-    this.contract = (this.web3.eth.contract(this.contractAbi)).at(contractAddress);
+    this.contract = (this.web3.eth.contract(this.contractAbi)).at(EscrowContract_Address);
     this.web3.eth.defaultAccount = this.coinbase;
 
     this.owner = promisify(cb => this.contract.owner.call(cb));

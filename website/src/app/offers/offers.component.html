@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="container">
+    <div class="card text-center">
+
+      <div class="card-header bg-success">
+        <div>
+          <span style="font-weight: bold; font-size: 1.5rem; padding-left: 2.5rem;">Offers</span>
+          <span style="float: right;">
+            <button class="btn" (click)="LoadContract()">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>S.No.</th>
+              <th>Trade Hash</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hash of currentSellOffersTradeHashes; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{hash}}</td>
+              <td>
+                <button class="btn" (click)="LoadTradeDetailsFromTradeHash(hash)">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card text-center" *ngIf="offerDetails != undefined" style="background: lightgoldenrodyellow">
+          <div class="card-header">
+            <div>
+              <span style="font-weight: bold">Offer Details</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Fiat Currency</td>
+                  <td>{{offerDetails[0]}}</td>
+                </tr>
+                <tr>
+                  <td>Eth Quantity</td>
+                  <td>{{offerDetails[1]}}</td>
+                </tr>
+                <tr>
+                  <td>Fiat Quantity</td>
+                  <td>{{offerDetails[2]}}</td>
+                </tr>
+                <tr>
+                  <td>Seller Address</td>
+                  <td>{{offerDetails[3]}}</td>
+                </tr>
+                <tr>
+                  <td>Buyer Address</td>
+                  <td>{{offerDetails[4]}}</td>
+                </tr>
+                <tr>
+                  <td>Arbitrator Address</td>
+                  <td>{{offerDetails[5]}}</td>
+                </tr>
+                <tr *ngIf="extendedOfferDetails != undefined">
+                  <td>Arbitrator Fee</td>
+                  <td>{{extendedOfferDetails[0]}}</td>
+                </tr>
+                <tr *ngIf="extendedOfferDetails != undefined">
+                  <td>Seller Bank Name</td>
+                  <td>{{extendedOfferDetails[2]}}</td>
+                </tr>
+                <tr *ngIf="extendedOfferDetails != undefined">
+                  <td>Seller Bank Account Number</td>
+                  <td>{{extendedOfferDetails[1]}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn" (click)="LoadExtendedTradeDetailsFromTradeHash()">More Details...</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
