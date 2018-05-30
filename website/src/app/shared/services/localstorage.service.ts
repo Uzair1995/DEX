@@ -1,6 +1,6 @@
 export class LocalStorageService {
 
-    private static readonly _userAccountInfo = "userAccount";
+    private static readonly _userAccountInfo = "_userAccount";
 
     static set userAccount(userData: any) {
         localStorage.setItem(this._userAccountInfo, JSON.stringify(userData));
