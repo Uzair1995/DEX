@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ABI } from 'ABI.const';
 import { contractAddress } from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper';
 import { LoadingBar } from 'app/shared/loading';
+import { EscrowContract_ABI } from 'ABI.const';
 
 declare var require: any;
 declare var window: any;
@@ -16,7 +16,7 @@ var web3 = window.web3;
 })
 export class ArbitratorComponent implements OnInit {
 
-  contractAbi = ABI;
+  contractAbi = EscrowContract_ABI;
   web3: any;
   coinbase: string;
   contract: any;
