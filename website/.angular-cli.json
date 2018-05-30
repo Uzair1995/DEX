@@ -22,7 +22,6 @@
         "styles.scss"
       ],
       "scripts": [
-        "assets/filesaver.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -4,6 +4,7 @@ import { contractAddress } from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper'
 import { LoadingBar } from 'app/shared/loading';
 
+
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');

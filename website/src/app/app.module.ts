@@ -14,7 +14,7 @@ import { UseraccountComponent } from './useraccount/useraccount.component';
   declarations: [
     AppComponent,
     ArbitratorComponent,
-    
+
     BuyerComponent,
     SellerComponent,
     UseraccountComponent
