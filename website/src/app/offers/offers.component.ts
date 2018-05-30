@@ -66,7 +66,6 @@ export class OffersComponent implements OnInit {
 
   async LoadExtendedTradeDetailsFromTradeHash(hash = this.selectedTradeHash) {
     this.extendedOfferDetails = await promisify(cb => this.contract.getSellOfferDetailsFromTradeHash(hash, cb));
-    console.log(this.extendedOfferDetails)
   }
 
 }
