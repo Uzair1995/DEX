@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { ABI } from 'ABI.const';
 import {contractAddress} from 'addresses.const';
 import { promisify } from 'app/wrappers/wrapper'
 import { LoadingBar } from './shared/loading';
+import { EscrowContract_ABI } from 'ABI.const';
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
@@ -15,7 +15,7 @@ var web3 = window.web3;
 })
 export class AppComponent implements OnInit {
 
-  contractAbi = ABI;
+  contractAbi = EscrowContract_ABI;
   web3: any;
   coinbase: string;
   contract: any;
