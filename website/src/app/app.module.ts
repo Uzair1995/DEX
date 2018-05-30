@@ -15,7 +15,7 @@ import { OffersComponent } from './offers/offers.component';
   declarations: [
     AppComponent,
     ArbitratorComponent,
-    
+
     BuyerComponent,
     SellerComponent,
     UseraccountComponent,

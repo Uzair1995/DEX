@@ -4,6 +4,7 @@ import { LoadingBar } from 'app/shared/loading';
 import { EscrowContract_ABI } from 'ABI.const';
 import { EscrowContract_Address } from 'addresses.const';
 
+
 declare var require: any;
 declare var window: any;
 var Web3 = require('web3');
