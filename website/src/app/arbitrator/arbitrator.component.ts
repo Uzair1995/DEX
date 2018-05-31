@@ -35,13 +35,14 @@ export class ArbitratorComponent implements OnInit {
   public sellerDisputeRaise;
   public buyerDisputeRaise;
   public isArbitratorAgreeingForSeller;
+  public buyerSentFiatAmount;
   public sellerAmountDeposit;
   public buyerSecurityDeposit;
   public isLoading = false;
 
   constructor() { }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (web3 != undefined) {
       this.web3 = web3;
     }
@@ -50,8 +51,27 @@ export class ArbitratorComponent implements OnInit {
     }
     this.coinbase = this.web3.eth.accounts[0];
     this.LoadContract();
+
+    const filter = web3.eth.filter({
+      fromBlock: 0,
+      toBlock: 'latest',
+      address: EscrowContract_Address,
+      topics: [web3.sha3("UpdateArbitrator(address,address)"), this.ConvertAddressToBase64(this.coinbase)]
+    })
+    filter.watch((error, result) => {
+      console.log("ERROR => ");
+      console.log(error);
+      console.log("RESULT => ");
+      console.log(result);
+    });
+
   }
 
+  private ConvertAddressToBase64(address: string) {
+    var splittedAddress = address.split("x");
+    address = "0x000000000000000000000000"+ splittedAddress[1];
+    return address;
+  }
 
   async LoadContract() {
     this.isLoading = true;
@@ -73,6 +93,7 @@ export class ArbitratorComponent implements OnInit {
     this.buyerSecurityDeposit = promisify(cb => this.contract.buyerSecurityDeposit.call(cb));
     this.sellerDisputeRaise = promisify(cb => this.contract.sellerDisputeRaise.call(cb));
     this.buyerDisputeRaise = promisify(cb => this.contract.buyerDisputeRaise.call(cb));
+    this.buyerSentFiatAmount = promisify(cb => this.contract.buyerSentFiatAmount.call(cb));
     await Promise.all([
       this.owner,
       this.arbitratorAddress,
@@ -87,7 +108,8 @@ export class ArbitratorComponent implements OnInit {
       this.sellerAmountDeposit,
       this.buyerSecurityDeposit,
       this.sellerDisputeRaise,
-      this.buyerDisputeRaise
+      this.buyerDisputeRaise,
+      this.buyerSentFiatAmount
     ]).then(values => {
       this.owner = values[0];
       this.arbitratorAddress = values[1];
@@ -103,11 +125,9 @@ export class ArbitratorComponent implements OnInit {
       this.buyerSecurityDeposit = values[11];
       this.sellerDisputeRaise = values[12];
       this.buyerDisputeRaise = values[13];
-
-
+      this.buyerSentFiatAmount = values[14];
       LoadingBar.emit(false);
       this.isLoading = false;
-
     })
 
   }
@@ -121,7 +141,6 @@ export class ArbitratorComponent implements OnInit {
   }
 
   async updateArbitrator() {
-    console.log(this.arbitratorAddress);
     if (this.contract != undefined) {
       if (this.arbitratorAddress != undefined && this.arbitratorAddress != "") {
         await promisify(cb => this.contract.updateArbitrator(this.arbitratorAddress, cb));

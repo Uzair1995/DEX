@@ -20,24 +20,31 @@
             <tr>
               <th>Users</th>
               <th>Addresses</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Owner</td>
               <td>{{owner}}</td>
+              <td></td>
             </tr>
             <tr>
               <td>Arbitrator</td>
               <td>{{arbitratorAddress}}</td>
+              <td>
+                <button id="button" class="btn" (click)="updateArbitrator()">Update Arbitrator</button>
+              </td>
             </tr>
             <tr>
               <td>Seller</td>
               <td>{{sellerAddress}}</td>
+              <td></td>
             </tr>
             <tr>
               <td>Buyer</td>
               <td>{{buyerAddress}}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -106,6 +113,11 @@
               <td>
                 <button id="button" class="btn" (click)="signerForArbitratorForSeller()">Sign For Seller</button>
               </td>
+            </tr>
+            <tr>
+              <td>Buyer Sent The Fiat Amount</td>
+              <td>{{buyerSentFiatAmount}}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

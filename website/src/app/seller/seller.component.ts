@@ -42,6 +42,7 @@ export class SellerComponent implements OnInit {
 
   public sellerDisputeRaise;
   public buyerDisputeRaise;
+  public buyerSentFiatAmount;
 
   public isLoading = false;
 
@@ -78,6 +79,7 @@ export class SellerComponent implements OnInit {
     this.buyerSecurityDeposit = promisify(cb => this.contract.buyerSecurityDeposit.call(cb));
     this.sellerDisputeRaise = promisify(cb => this.contract.sellerDisputeRaise.call(cb));
     this.buyerDisputeRaise = promisify(cb => this.contract.buyerDisputeRaise.call(cb));
+    this.buyerSentFiatAmount = promisify(cb => this.contract.buyerSentFiatAmount.call(cb));
     await Promise.all([
       this.owner,
       this.arbitratorAddress,
@@ -92,7 +94,8 @@ export class SellerComponent implements OnInit {
       this.sellerAmountDeposit,
       this.buyerSecurityDeposit,
       this.sellerDisputeRaise,
-      this.buyerDisputeRaise
+      this.buyerDisputeRaise,
+      this.buyerSentFiatAmount
     ]).then(values=>{
       this.owner = values[0];
       this.arbitratorAddress = values[1];
@@ -108,6 +111,7 @@ export class SellerComponent implements OnInit {
       this.buyerSecurityDeposit= values[11];
       this.sellerDisputeRaise= values[12];
       this.buyerDisputeRaise= values[13];
+      this.buyerSentFiatAmount = values[14];
       LoadingBar.emit(false);
       this.isLoading = false;
     })
