@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'app/shared/services/localstorage.service';
 
+declare var require: any;
+var bip39 = require('bip39')
+
+
 @Component({
   selector: 'app-useraccount',
   templateUrl: './useraccount.component.html',
@@ -12,6 +16,8 @@ export class UseraccountComponent implements OnInit {
 
   ngOnInit() {
     this.saveUserAccountInfo();
+    var mnemonic = bip39.generateMnemonic()
+    console.log(mnemonic);
   }
 
   public saveUserAccountInfo() {
