@@ -6,6 +6,8 @@ import { BuyerComponent } from 'app/buyer/buyer.component';
 import { SellerComponent } from 'app/seller/seller.component';
 import { UseraccountComponent } from './useraccount/useraccount.component';
 import { OffersComponent } from './offers/offers.component';
+import { WalletComponent } from './wallet/wallet.component';
+
 
 
 const routes: Routes = [
@@ -28,6 +30,11 @@ const routes: Routes = [
   {
     path : 'offersscreen',
     component : OffersComponent
+  }
+  ,
+  {
+    path : 'wallet',
+    component : WalletComponent
   }
 ];
 

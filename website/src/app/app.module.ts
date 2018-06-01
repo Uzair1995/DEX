@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import "rxjs";
 import { UseraccountComponent } from './useraccount/useraccount.component';
 import { OffersComponent } from './offers/offers.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OffersComponent } from './offers/offers.component';
     BuyerComponent,
     SellerComponent,
     UseraccountComponent,
-    OffersComponent
+    OffersComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,
