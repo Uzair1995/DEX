@@ -32,6 +32,7 @@ contract DEX_MainContract {
 
     mapping (bytes32 => Offer) public sellOffers;
     mapping (bytes32 => Offer) public buyOffers;
+    
     bytes32 [] public currentSellOffersTradeHash;
     bytes32 [] public currentBuyOffersTradeHash;
     address[] public escrowContracts;
@@ -146,11 +147,15 @@ contract DEX_MainContract {
         {
             delete buyOffers[_tradeHash];
             deleteBuyOfferTradeHash(_tradeHash);
+            freeEscrowContracts.push(escrowAddressWithRespectToTradeHash[_tradeHash]);
+            delete escrowAddressWithRespectToTradeHash[_tradeHash];
             emit CompleteOffer(_tradeHash);
         }
         else if (sellOffers[_tradeHash].sellerAddress != address(0)) {
             delete sellOffers[_tradeHash];
             deleteSellOfferTradeHash(_tradeHash);
+            freeEscrowContracts.push(escrowAddressWithRespectToTradeHash[_tradeHash]);
+            delete escrowAddressWithRespectToTradeHash[_tradeHash];
             emit CompleteOffer(_tradeHash);
         }
         else{
@@ -185,8 +190,8 @@ contract DEX_MainContract {
     function deleteBuyOfferTradeHash(bytes32 _tradeHash) private {
         bytes32 tradeHashAtLastIndex = currentBuyOffersTradeHash[currentBuyOffersTradeHash.length-1];
         currentBuyOffersTradeHash[tradeHashIndexes[_tradeHash]] = tradeHashAtLastIndex;
-        //delete currentBuyOffersAddresses[tradeHashAtLastIndex].index;
         delete tradeHashIndexes[_tradeHash];
         currentBuyOffersTradeHash.length--;
     }
+    
 }
