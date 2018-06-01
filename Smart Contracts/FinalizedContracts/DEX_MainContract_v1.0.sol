@@ -10,6 +10,7 @@ contract DEX_MainContract {
     event BuyOfferCanceled(address indexed caller, bytes32 indexed tradeHash);
     event EscrowContractCreatedForTrade(address indexed sellerAddress, address indexed buyerAddress, address addressOfNewEscrow, bytes32 indexed tradeHash);
     event CompleteOffer(bytes32 indexed tradeHash);
+    event CompleteOfferFailed(bytes32 indexed tradeHash);
     
     struct SellerFiatAccount {
         string accountNumber;
@@ -139,9 +140,20 @@ contract DEX_MainContract {
     
     function completeOffer (bytes32 _tradeHash) external {
         require(escrowAddressWithRespectToTradeHash[_tradeHash] == msg.sender);
-        delete buyOffers[_tradeHash];
-        deleteBuyOfferTradeHash(_tradeHash);
-        emit CompleteOffer(_tradeHash);
+        if (buyOffers[_tradeHash].buyerAddress != address(0))
+        {
+            delete buyOffers[_tradeHash];
+            deleteBuyOfferTradeHash(_tradeHash);
+            emit CompleteOffer(_tradeHash);
+        }
+        else if (sellOffers[_tradeHash].sellerAddress != address(0)) {
+            delete sellOffers[_tradeHash];
+            deleteSellOfferTradeHash(_tradeHash);
+            emit CompleteOffer(_tradeHash);
+        }
+        else{
+            emit CompleteOfferFailed(_tradeHash);
+        }
     }
     
     //private functions
