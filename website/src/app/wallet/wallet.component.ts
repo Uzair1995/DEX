@@ -13,16 +13,21 @@ export class WalletComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public generateBitcoinWallet(passphrase: string) {
     var mnemonic = bip39.generateMnemonic()
-    console.log(mnemonic);
-    var seed = bip39.mnemonicToSeed(mnemonic, "asad123");
-    // Generate bitcoin public address and private keys.
+    var seed = bip39.mnemonicToSeed(mnemonic, passphrase);
     var bitcoinNetwork = bitcoin.networks.bitcoin
     var hdMaster = bitcoin.HDNode.fromSeedBuffer(seed, bitcoinNetwork) // seed from above
     var publicAddress = hdMaster.getAddress();
     var privateKey = hdMaster.keyPair.toWIF();
     console.log("Public Address:" + publicAddress);
     console.log("Private key:" + privateKey);
+  }
+
+  public generateEthereumWallet(passphrase: string) {
+  
   }
 
 }
