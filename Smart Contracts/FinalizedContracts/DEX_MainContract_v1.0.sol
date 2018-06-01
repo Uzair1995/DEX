@@ -1,6 +1,7 @@
 pragma solidity ^0.4.24;
 
 import "./EscrowContract.sol";
+import "./IEscrowContract.sol";
 
 contract DEX_MainContract {
     
@@ -31,9 +32,11 @@ contract DEX_MainContract {
 
     mapping (bytes32 => Offer) public sellOffers;
     mapping (bytes32 => Offer) public buyOffers;
+    
     bytes32 [] public currentSellOffersTradeHash;
     bytes32 [] public currentBuyOffersTradeHash;
     address[] public escrowContracts;
+    address[] public freeEscrowContracts;
     mapping (bytes32 => uint) private tradeHashIndexes;
     mapping (bytes32 => address) public escrowAddressWithRespectToTradeHash;
     
@@ -144,11 +147,15 @@ contract DEX_MainContract {
         {
             delete buyOffers[_tradeHash];
             deleteBuyOfferTradeHash(_tradeHash);
+            freeEscrowContracts.push(escrowAddressWithRespectToTradeHash[_tradeHash]);
+            delete escrowAddressWithRespectToTradeHash[_tradeHash];
             emit CompleteOffer(_tradeHash);
         }
         else if (sellOffers[_tradeHash].sellerAddress != address(0)) {
             delete sellOffers[_tradeHash];
             deleteSellOfferTradeHash(_tradeHash);
+            freeEscrowContracts.push(escrowAddressWithRespectToTradeHash[_tradeHash]);
+            delete escrowAddressWithRespectToTradeHash[_tradeHash];
             emit CompleteOffer(_tradeHash);
         }
         else{
@@ -158,10 +165,20 @@ contract DEX_MainContract {
     
     //private functions
     function createEscrowContract (bytes32 _tradeHash, address _sellerAddress, address _buyerAddress, address _arbitratorAddress, uint _arbitratorFees, uint _offeredAmount) private {
-        address addressOfNewEscrow = new EscrowContract(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
-        escrowContracts.push(addressOfNewEscrow);
-        escrowAddressWithRespectToTradeHash[_tradeHash] = addressOfNewEscrow;
-        emit EscrowContractCreatedForTrade(_sellerAddress, _buyerAddress, addressOfNewEscrow, _tradeHash);
+        address escrowAddress;
+        if(freeEscrowContracts.length > 0)
+        {
+            escrowAddress = freeEscrowContracts[freeEscrowContracts.length-1];
+            IEscrowContract escrowContractInterface = IEscrowContract(escrowAddress);
+            escrowContractInterface.setDataToStartEscrow(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
+            freeEscrowContracts.length--;
+        }
+        else{
+            escrowAddress = new EscrowContract(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
+            escrowContracts.push(escrowAddress);
+        }
+        escrowAddressWithRespectToTradeHash[_tradeHash] = escrowAddress;
+        emit EscrowContractCreatedForTrade(_sellerAddress, _buyerAddress, escrowAddress, _tradeHash);
     }
     function deleteSellOfferTradeHash(bytes32 _tradeHash) private {
         bytes32 tradeHashAtLastIndex = currentSellOffersTradeHash[currentSellOffersTradeHash.length-1];
@@ -173,8 +190,8 @@ contract DEX_MainContract {
     function deleteBuyOfferTradeHash(bytes32 _tradeHash) private {
         bytes32 tradeHashAtLastIndex = currentBuyOffersTradeHash[currentBuyOffersTradeHash.length-1];
         currentBuyOffersTradeHash[tradeHashIndexes[_tradeHash]] = tradeHashAtLastIndex;
-        //delete currentBuyOffersAddresses[tradeHashAtLastIndex].index;
         delete tradeHashIndexes[_tradeHash];
         currentBuyOffersTradeHash.length--;
     }
+    
 }
