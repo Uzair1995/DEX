@@ -1,6 +1,7 @@
 pragma solidity ^0.4.24;
 
 import "./EscrowContract.sol";
+import "./IEscrowContract.sol";
 
 contract DEX_MainContract {
     
@@ -34,6 +35,7 @@ contract DEX_MainContract {
     bytes32 [] public currentSellOffersTradeHash;
     bytes32 [] public currentBuyOffersTradeHash;
     address[] public escrowContracts;
+    address[] public freeEscrowContracts;
     mapping (bytes32 => uint) private tradeHashIndexes;
     mapping (bytes32 => address) public escrowAddressWithRespectToTradeHash;
     
@@ -158,10 +160,20 @@ contract DEX_MainContract {
     
     //private functions
     function createEscrowContract (bytes32 _tradeHash, address _sellerAddress, address _buyerAddress, address _arbitratorAddress, uint _arbitratorFees, uint _offeredAmount) private {
-        address addressOfNewEscrow = new EscrowContract(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
-        escrowContracts.push(addressOfNewEscrow);
-        escrowAddressWithRespectToTradeHash[_tradeHash] = addressOfNewEscrow;
-        emit EscrowContractCreatedForTrade(_sellerAddress, _buyerAddress, addressOfNewEscrow, _tradeHash);
+        address escrowAddress;
+        if(freeEscrowContracts.length > 0)
+        {
+            escrowAddress = freeEscrowContracts[freeEscrowContracts.length-1];
+            IEscrowContract escrowContractInterface = IEscrowContract(escrowAddress);
+            escrowContractInterface.setDataToStartEscrow(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
+            freeEscrowContracts.length--;
+        }
+        else{
+            escrowAddress = new EscrowContract(_tradeHash, _sellerAddress, _buyerAddress, _arbitratorAddress, _arbitratorFees, _offeredAmount);
+            escrowContracts.push(escrowAddress);
+        }
+        escrowAddressWithRespectToTradeHash[_tradeHash] = escrowAddress;
+        emit EscrowContractCreatedForTrade(_sellerAddress, _buyerAddress, escrowAddress, _tradeHash);
     }
     function deleteSellOfferTradeHash(bytes32 _tradeHash) private {
         bytes32 tradeHashAtLastIndex = currentSellOffersTradeHash[currentSellOffersTradeHash.length-1];

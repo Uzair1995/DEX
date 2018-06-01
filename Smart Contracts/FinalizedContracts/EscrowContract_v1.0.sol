@@ -58,6 +58,19 @@ contract EscrowContract {
         offeredAmount = _offeredAmount;
         tradeHash = _tradeHash;
     }
+    function setDataToStartEscrow (bytes32 _tradeHash, address _sellerAddress, address _buyerAddress, address _arbitratorAddress, uint _arbitratorFees, uint _offeredAmount) external {
+        require(msg.sender==owner);
+        require(_offeredAmount!=0);
+        require(buyerSecurityDeposit==0);
+        require(sellerAmountDeposit==0);
+        require(tradeHash==bytes32(0));
+        sellerAddress = _sellerAddress;
+        buyerAddress = _buyerAddress;
+        arbitratorAddress = _arbitratorAddress;
+        arbitratorFees = _arbitratorFees;
+        offeredAmount = _offeredAmount;
+        tradeHash = _tradeHash;
+    }
     
     //update functions for the owner, called only when the trade is not in progress
     function updateOwner(address _owner) external {
@@ -99,7 +112,7 @@ contract EscrowContract {
         emit UpdateArbitratorFees(msg.sender, _arbitratorFees);
     }
     function updateOfferedAmount(uint _offeredAmount) external {
-        require(msg.sender==arbitratorAddress);
+        require(msg.sender==arbitratorAddress || msg.sender==owner);
         require(_offeredAmount!=0);
         require(buyerSecurityDeposit==0);
         require(sellerAmountDeposit==0);
