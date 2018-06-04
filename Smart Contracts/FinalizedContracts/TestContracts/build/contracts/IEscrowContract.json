@@ -1,0 +1,506 @@
+{
+  "contractName": "IEscrowContract",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_tradeHash",
+          "type": "bytes32"
+        },
+        {
+          "name": "_sellerAddress",
+          "type": "address"
+        },
+        {
+          "name": "_buyerAddress",
+          "type": "address"
+        },
+        {
+          "name": "_arbitratorAddress",
+          "type": "address"
+        },
+        {
+          "name": "_arbitratorFees",
+          "type": "uint256"
+        },
+        {
+          "name": "_offeredAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDataToStartEscrow",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\r\n\r\ncontract IEscrowContract {\r\n    function setDataToStartEscrow (bytes32 _tradeHash, address _sellerAddress, address _buyerAddress, address _arbitratorAddress, uint _arbitratorFees, uint _offeredAmount) external;\r\n}",
+  "sourcePath": "E:\\DEX\\Smart Contracts\\FinalizedContracts\\TestContracts\\contracts\\IEscrowContract.sol",
+  "ast": {
+    "absolutePath": "/E/DEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
+    "exportedSymbols": {
+      "IEscrowContract": [
+        1948
+      ]
+    },
+    "id": 1949,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1932,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1948,
+        "linearizedBaseContracts": [
+          1948
+        ],
+        "name": "IEscrowContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1947,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setDataToStartEscrow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1945,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1934,
+                  "name": "_tradeHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "91:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1933,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "91:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1936,
+                  "name": "_sellerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "111:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1935,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "111:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1938,
+                  "name": "_buyerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "135:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1937,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "135:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1940,
+                  "name": "_arbitratorAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "158:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1939,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "158:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1942,
+                  "name": "_arbitratorFees",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "186:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1941,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "186:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1944,
+                  "name": "_offeredAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "208:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1943,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "208:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "90:138:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1946,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "237:0:3"
+            },
+            "scope": 1948,
+            "src": "60:178:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1949,
+        "src": "28:213:3"
+      }
+    ],
+    "src": "0:241:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/E/DEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
+    "exportedSymbols": {
+      "IEscrowContract": [
+        1948
+      ]
+    },
+    "id": 1949,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1932,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1948,
+        "linearizedBaseContracts": [
+          1948
+        ],
+        "name": "IEscrowContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1947,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setDataToStartEscrow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1945,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1934,
+                  "name": "_tradeHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "91:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1933,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "91:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1936,
+                  "name": "_sellerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "111:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1935,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "111:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1938,
+                  "name": "_buyerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "135:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1937,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "135:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1940,
+                  "name": "_arbitratorAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "158:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1939,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "158:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1942,
+                  "name": "_arbitratorFees",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "186:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1941,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "186:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1944,
+                  "name": "_offeredAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1947,
+                  "src": "208:19:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1943,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "208:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "90:138:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1946,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "237:0:3"
+            },
+            "scope": 1948,
+            "src": "60:178:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1949,
+        "src": "28:213:3"
+      }
+    ],
+    "src": "0:241:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-06-04T07:40:51.094Z"
+}

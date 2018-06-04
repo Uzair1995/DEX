@@ -26,8 +26,6 @@ export class WalletComponent implements OnInit {
     console.log("Private key:" + privateKey);
   }
 
-  public generateEthereumWallet(passphrase: string) {
-  
-  }
+
 
 }
