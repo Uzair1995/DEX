@@ -83,7 +83,7 @@ contract DEX_MainContract {
     function getBuyOfferFromTradeHash(bytes32 _tradeHash) view external returns(string, string, uint, uint, address, address, address) {
         return (
             buyOffers[_tradeHash].fiatCurrency,
-            sellOffers[_tradeHash].paymentMethod,
+            buyOffers[_tradeHash].paymentMethod,
             buyOffers[_tradeHash].offeredEthQuantity,
             buyOffers[_tradeHash].fiatQuantity,
             //sellOffers[_tradeHash].arbitratorFee,
