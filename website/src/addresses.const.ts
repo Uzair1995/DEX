@@ -1,2 +1,2 @@
 export const EscrowContract_Address = "0xe6a093b4BB49913cE18B3A70eBB25CA34b47e7D4";
-export const DEX_MainContract_Address = "0x020A07F7Db434aAE7fe375aE0c60D95d933ea8a9";
+export const DEX_MainContract_Address = "0xAC828F3060acc362b17b6a62C0213C48d9f1F220";

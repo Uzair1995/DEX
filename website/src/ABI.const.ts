@@ -1,25 +1,193 @@
 export const EscrowContract_ABI = [
 	{
-		"anonymous": false,
-		"inputs": [
+		"constant": false,
+		"inputs": [],
+		"name": "signerForArbitratorForSeller",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sellerAmountDeposit",
+		"outputs": [
 			{
-				"indexed": true,
-				"name": "caller",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "sellerAddress",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "amountToRelease",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "ReleaseFundsForSeller",
-		"type": "event"
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "buyerSecurityDeposit",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sellerAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "buyerAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "raiseDisputeForSeller",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tradeHash",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_offeredAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "updateOfferedAmount",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sellerDisputeRaise",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "releaseFundsToBuyer",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "signerForBuyer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_arbitratorFees",
+				"type": "uint256"
+			}
+		],
+		"name": "updateArbitratorFees",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "updateOwner",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "buyerSentFiatAmount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": false,
@@ -28,6 +196,119 @@ export const EscrowContract_ABI = [
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "isArbitratorAgreeingForBuyer",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "isBuyerAgreeing",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tradeHash",
+				"type": "bytes32"
+			},
+			{
+				"name": "_sellerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_buyerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorFees",
+				"type": "uint256"
+			},
+			{
+				"name": "_offeredAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "setDataToStartEscrow",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "raiseBuyerSentFiatAmount",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "arbitratorFees",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "offeredAmount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_arbitratorAddress",
+				"type": "address"
+			}
+		],
+		"name": "updateArbitrator",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -42,15 +323,6 @@ export const EscrowContract_ABI = [
 	{
 		"constant": false,
 		"inputs": [],
-		"name": "raiseBuyerSentFiatAmount",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
 		"name": "raiseDisputeForBuyer",
 		"outputs": [],
 		"payable": false,
@@ -58,21 +330,17 @@ export const EscrowContract_ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [],
-		"name": "raiseDisputeForSeller",
-		"outputs": [],
+		"name": "arbitratorAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "releaseFundsToBuyer",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -96,29 +364,163 @@ export const EscrowContract_ABI = [
 	{
 		"constant": false,
 		"inputs": [],
-		"name": "signerForArbitratorForSeller",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "signerForBuyer",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
 		"name": "signerForSeller",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_sellerAddress",
+				"type": "address"
+			}
+		],
+		"name": "updateSeller",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "isArbitratorAgreeingForSeller",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "isSellerAgreeing",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "buyerDisputeRaise",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_buyerAddress",
+				"type": "address"
+			}
+		],
+		"name": "updateBuyer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_tradeHash",
+				"type": "bytes32"
+			},
+			{
+				"name": "_sellerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_buyerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorFees",
+				"type": "uint256"
+			},
+			{
+				"name": "_offeredAmount",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "UpdateOwner",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "newSeller",
+				"type": "address"
+			}
+		],
+		"name": "UpdateSeller",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "newBuyer",
+				"type": "address"
+			}
+		],
+		"name": "UpdateBuyer",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -138,18 +540,38 @@ export const EscrowContract_ABI = [
 		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_arbitratorAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "arbitratorFees",
+				"type": "uint256"
 			}
 		],
-		"name": "updateArbitrator",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "UpdateArbitratorFees",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "offeredAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "UpdateOfferedAmount",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -205,28 +627,16 @@ export const EscrowContract_ABI = [
 			},
 			{
 				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "UpdateOwner",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "caller",
+				"name": "sellerAddress",
 				"type": "address"
 			},
 			{
 				"indexed": true,
-				"name": "newSeller",
-				"type": "address"
+				"name": "amountToRelease",
+				"type": "uint256"
 			}
 		],
-		"name": "UpdateSeller",
+		"name": "ReleaseFundsForSeller",
 		"type": "event"
 	},
 	{
@@ -258,324 +668,84 @@ export const EscrowContract_ABI = [
 				"indexed": true,
 				"name": "caller",
 				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "newBuyer",
-				"type": "address"
 			}
 		],
-		"name": "UpdateBuyer",
+		"name": "RaiseBuyerSentFiatAmount",
 		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_arbitratorFees",
-				"type": "uint256"
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
 			}
 		],
-		"name": "updateArbitratorFees",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "SignerForSeller",
+		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_buyerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			}
 		],
-		"name": "updateBuyer",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "SignerForBuyer",
+		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_offeredAmount",
-				"type": "uint256"
+				"indexed": true,
+				"name": "caller",
+				"type": "address"
 			}
 		],
-		"name": "updateOfferedAmount",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "SignerForArbitratorForBuyer",
+		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_owner",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			}
 		],
-		"name": "updateOwner",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "SignerForArbitratorForSeller",
+		"type": "event"
 	},
 	{
-		"constant": false,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_sellerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			}
 		],
-		"name": "updateSeller",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "RaiseDisputeForSeller",
+		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "_sellerAddress",
-				"type": "address"
-			},
-			{
-				"name": "_buyerAddress",
-				"type": "address"
-			},
-			{
-				"name": "_arbitratorAddress",
-				"type": "address"
-			},
-			{
-				"name": "_arbitratorFees",
-				"type": "uint256"
-			},
-			{
-				"name": "_offeredAmount",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arbitratorAddress",
-		"outputs": [
-			{
-				"name": "",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "arbitratorFees",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "buyerAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "buyerDisputeRaise",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "buyerSecurityDeposit",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "buyerSentFiatAmount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isArbitratorAgreeingForBuyer",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isArbitratorAgreeingForSeller",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isBuyerAgreeing",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isSellerAgreeing",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "offeredAmount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sellerAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sellerAmountDeposit",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sellerDisputeRaise",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+		"name": "RaiseDisputeForBuyer",
+		"type": "event"
 	}
-]
+];
 
 export const DEX_MainContract_ABI = [
 	{
@@ -702,26 +872,7 @@ export const DEX_MainContract_ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "currentBuyOffersAddresses",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "currentSellOffersAddresses",
+		"name": "currentBuyOffersTradeHash",
 		"outputs": [
 			{
 				"name": "",
@@ -740,6 +891,25 @@ export const DEX_MainContract_ABI = [
 			{
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "escrowAddressWithRespectToTradeHash",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -831,6 +1001,134 @@ export const DEX_MainContract_ABI = [
 		"inputs": [
 			{
 				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "sellOffers",
+		"outputs": [
+			{
+				"name": "fiatCurrency",
+				"type": "string"
+			},
+			{
+				"components": [
+					{
+						"name": "accountNumber",
+						"type": "string"
+					},
+					{
+						"name": "bankName",
+						"type": "string"
+					}
+				],
+				"name": "sellerFiatAccount",
+				"type": "tuple"
+			},
+			{
+				"name": "offeredEthQuantity",
+				"type": "uint256"
+			},
+			{
+				"name": "fiatQuantity",
+				"type": "uint256"
+			},
+			{
+				"name": "sellerAddress",
+				"type": "address"
+			},
+			{
+				"name": "buyerAddress",
+				"type": "address"
+			},
+			{
+				"name": "arbitratorAddress",
+				"type": "address"
+			},
+			{
+				"name": "arbitratorFee",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "buyOffers",
+		"outputs": [
+			{
+				"name": "fiatCurrency",
+				"type": "string"
+			},
+			{
+				"components": [
+					{
+						"name": "accountNumber",
+						"type": "string"
+					},
+					{
+						"name": "bankName",
+						"type": "string"
+					}
+				],
+				"name": "sellerFiatAccount",
+				"type": "tuple"
+			},
+			{
+				"name": "offeredEthQuantity",
+				"type": "uint256"
+			},
+			{
+				"name": "fiatQuantity",
+				"type": "uint256"
+			},
+			{
+				"name": "sellerAddress",
+				"type": "address"
+			},
+			{
+				"name": "buyerAddress",
+				"type": "address"
+			},
+			{
+				"name": "arbitratorAddress",
+				"type": "address"
+			},
+			{
+				"name": "arbitratorFee",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tradeHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "completeOffer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -887,12 +1185,50 @@ export const DEX_MainContract_ABI = [
 	},
 	{
 		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "currentSellOffersTradeHash",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [],
 		"name": "getCurrentBuyOffersCount",
 		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "freeEscrowContracts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -943,8 +1279,8 @@ export const DEX_MainContract_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "sellerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			},
 			{
@@ -960,8 +1296,8 @@ export const DEX_MainContract_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "buyerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			},
 			{
@@ -977,8 +1313,8 @@ export const DEX_MainContract_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "sellerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			},
 			{
@@ -994,8 +1330,8 @@ export const DEX_MainContract_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "buyerAddress",
+				"indexed": true,
+				"name": "caller",
 				"type": "address"
 			},
 			{
@@ -1033,5 +1369,83 @@ export const DEX_MainContract_ABI = [
 		],
 		"name": "EscrowContractCreatedForTrade",
 		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "CompleteOffer",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "CompleteOfferFailed",
+		"type": "event"
 	}
-]
+];
+
+export const IDEX_MainContract_ABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tradeHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "completeOffer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+
+export const IEscrowContract_ABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tradeHash",
+				"type": "bytes32"
+			},
+			{
+				"name": "_sellerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_buyerAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorAddress",
+				"type": "address"
+			},
+			{
+				"name": "_arbitratorFees",
+				"type": "uint256"
+			},
+			{
+				"name": "_offeredAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "setDataToStartEscrow",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];

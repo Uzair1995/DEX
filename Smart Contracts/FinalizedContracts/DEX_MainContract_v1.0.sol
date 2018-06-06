@@ -13,13 +13,9 @@ contract DEX_MainContract {
     event CompleteOffer(bytes32 indexed tradeHash);
     event CompleteOfferFailed(bytes32 indexed tradeHash);
     
-    struct SellerFiatAccount {
-        string accountNumber;
-        string bankName;
-    }
     struct Offer {
         string fiatCurrency;
-        SellerFiatAccount sellerFiatAccount;
+        string paymentMethod;
         uint offeredEthQuantity;
         uint fiatQuantity;
         address sellerAddress;
@@ -44,13 +40,12 @@ contract DEX_MainContract {
         owner = msg.sender;
     }
     
-    function placeSellOffer(string _fiatCurrency, string _sellerBankaccountNumber, string _sellerBankName, uint _offeredEthQuantity, uint _fiatQuantity, address _arbitratorAddress) external {
+    function placeSellOffer(string _fiatCurrency, string _paymentMethod, uint _offeredEthQuantity, uint _fiatQuantity, address _arbitratorAddress) external {
         bytes32 tradeHash = keccak256(msg.sender, now, _offeredEthQuantity, _fiatQuantity, _fiatCurrency, "Sell");
         if(sellOffers[tradeHash].sellerAddress != address(0)) revert();
         Offer storage offer = sellOffers[tradeHash];
         offer.fiatCurrency = _fiatCurrency;
-        offer.sellerFiatAccount.accountNumber = _sellerBankaccountNumber;
-        offer.sellerFiatAccount.bankName = _sellerBankName;
+        offer.paymentMethod = _paymentMethod;
         offer.offeredEthQuantity = _offeredEthQuantity;
         offer.fiatQuantity = _fiatQuantity;
         offer.sellerAddress = msg.sender;
@@ -59,11 +54,12 @@ contract DEX_MainContract {
         tradeHashIndexes[tradeHash] = currentSellOffersTradeHash.length - 1;
         emit SellOfferPlaced(msg.sender, tradeHash);
     }
-    function placeBuyOffer(string _fiatCurrency, uint _offeredEthQuantity, uint _fiatQuantity, address _arbitratorAddress) external {
+    function placeBuyOffer(string _fiatCurrency, string _paymentMethod, uint _offeredEthQuantity, uint _fiatQuantity, address _arbitratorAddress) external {
         bytes32 tradeHash = keccak256(msg.sender, now, _offeredEthQuantity, _fiatQuantity, _fiatCurrency, "Buy");
         if(buyOffers[tradeHash].buyerAddress != address(0)) revert();
         Offer storage offer = buyOffers[tradeHash];
         offer.fiatCurrency = _fiatCurrency;
+        offer.paymentMethod = _paymentMethod;
         offer.offeredEthQuantity = _offeredEthQuantity;
         offer.fiatQuantity = _fiatQuantity;
         offer.buyerAddress = msg.sender;
@@ -73,35 +69,27 @@ contract DEX_MainContract {
         emit BuyOfferPlaced(msg.sender, tradeHash);
     }
     
-    function getSellOfferFromTradeHash(bytes32 _tradeHash) view external returns(string, uint, uint, address, address, address) {
+    function getSellOfferFromTradeHash(bytes32 _tradeHash) view external returns(string, string, uint, uint, address, address, address) {
         return (
             sellOffers[_tradeHash].fiatCurrency,
+            sellOffers[_tradeHash].paymentMethod,
             sellOffers[_tradeHash].offeredEthQuantity,
             sellOffers[_tradeHash].fiatQuantity,
+            //sellOffers[_tradeHash].arbitratorFee,
             sellOffers[_tradeHash].sellerAddress,
             sellOffers[_tradeHash].buyerAddress,
             sellOffers[_tradeHash].arbitratorAddress);
     }
-    function getSellOfferDetailsFromTradeHash(bytes32 _tradeHash) view external returns(uint, string, string) {
-        return (
-            sellOffers[_tradeHash].arbitratorFee,
-            sellOffers[_tradeHash].sellerFiatAccount.accountNumber,
-            sellOffers[_tradeHash].sellerFiatAccount.bankName);
-    }
-    function getBuyOfferFromTradeHash(bytes32 _tradeHash) view external returns(string, uint, uint, address, address, address) {
+    function getBuyOfferFromTradeHash(bytes32 _tradeHash) view external returns(string, string, uint, uint, address, address, address) {
         return (
             buyOffers[_tradeHash].fiatCurrency,
+            sellOffers[_tradeHash].paymentMethod,
             buyOffers[_tradeHash].offeredEthQuantity,
             buyOffers[_tradeHash].fiatQuantity,
+            //sellOffers[_tradeHash].arbitratorFee,
             buyOffers[_tradeHash].sellerAddress,
             buyOffers[_tradeHash].buyerAddress,
             buyOffers[_tradeHash].arbitratorAddress);
-    }
-    function getBuyOfferDetailsFromTradeHash(bytes32 _tradeHash) view external returns(uint, string, string) {
-        return (
-            buyOffers[_tradeHash].arbitratorFee,
-            buyOffers[_tradeHash].sellerFiatAccount.accountNumber,
-            buyOffers[_tradeHash].sellerFiatAccount.bankName);
     }
     
     function getCurrentSellOffersCount() view external returns(uint) {
@@ -132,12 +120,10 @@ contract DEX_MainContract {
         sellOffers[_tradeHash].buyerAddress = msg.sender;
         createEscrowContract(_tradeHash, sellOffers[_tradeHash].sellerAddress, sellOffers[_tradeHash].buyerAddress, sellOffers[_tradeHash].arbitratorAddress, 0, sellOffers[_tradeHash].offeredEthQuantity);
     }
-    function takeBuyOffer(bytes32 _tradeHash, string _sellerBankaccountNumber, string _sellerBankName) external {
+    function takeBuyOffer(bytes32 _tradeHash) external {
         require(buyOffers[_tradeHash].buyerAddress != address(0));
         require(buyOffers[_tradeHash].sellerAddress == address(0));
         buyOffers[_tradeHash].sellerAddress = msg.sender;
-        buyOffers[_tradeHash].sellerFiatAccount.accountNumber = _sellerBankaccountNumber;
-        buyOffers[_tradeHash].sellerFiatAccount.bankName = _sellerBankName;
         createEscrowContract(_tradeHash, buyOffers[_tradeHash].sellerAddress, buyOffers[_tradeHash].buyerAddress, buyOffers[_tradeHash].arbitratorAddress, 0, buyOffers[_tradeHash].offeredEthQuantity);
     }
     
