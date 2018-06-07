@@ -7,6 +7,7 @@ declare var window: any;
 var Web3 = require('web3');
 var web3 = window.web3;
 var keythereum = require("keythereum");
+declare const Buffer;
 
 @Component({
   selector: 'app-wallet',
@@ -68,15 +69,31 @@ export class WalletComponent implements OnInit {
       keythereum.dump("mparsec123", dk.privateKey, dk.salt, dk.iv, options, function (keyObject) {
         console.log("keyObject");
         console.log(keyObject);
-        keythereum.exportToFile(keyObject);
-        console.log(keythereum.recover("mparsec123", keyObject));
+        //keythereum.exportToFile(keyObject);
+        //console.log(keythereum.recover("mparsec123", keyObject));
       });
     });
+
+    //restore using private key
+    let privateKey = "10f2fb3aaac742b2f6c2a0a830d5330846633c8a139696cca2c0e379944f62b2";
+    let password = "bla";
+    var options = {
+      kdf: "pbkdf2",
+      cipher: "aes-128-ctr",
+      kdfparams: {
+        c: 262144,
+        dklen: 32,
+        prf: "hmac-sha256"
+      }
+    };
+    let dk = keythereum.create();
+    dk.privateKey = new Buffer(privateKey);
+    keythereum.dump("mparsec123", dk.privateKey, dk.salt, dk.iv, options, function (keyObject) {
+      console.log("keyObject");
+      console.log(keyObject);
+    });
+
   }
 
 
 }
-
-
-//0x2f732CC6c8F04302342f55BB95ebb819DA86dd90
-//0x65dc300caecf383e7bd01e9d94c0bea09735dbf8
