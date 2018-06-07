@@ -81,6 +81,7 @@ export class WalletComponent implements OnInit {
 
         //
         console.log((keythereum.recover("mparsec123", keyObject).toString('HEX')));
+        console.log("0x"+keyObject.address);
       });
     });
 
