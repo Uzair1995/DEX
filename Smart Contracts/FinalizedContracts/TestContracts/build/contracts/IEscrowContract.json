@@ -41,19 +41,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.24;\r\n\r\ncontract IEscrowContract {\r\n    function setDataToStartEscrow (bytes32 _tradeHash, address _sellerAddress, address _buyerAddress, address _arbitratorAddress, uint _arbitratorFees, uint _offeredAmount) external;\r\n}",
-  "sourcePath": "E:\\DEX\\Smart Contracts\\FinalizedContracts\\TestContracts\\contracts\\IEscrowContract.sol",
+  "sourcePath": "E:\\LocalDEX\\Smart Contracts\\FinalizedContracts\\TestContracts\\contracts\\IEscrowContract.sol",
   "ast": {
-    "absolutePath": "/E/DEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
+    "absolutePath": "/E/LocalDEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
     "exportedSymbols": {
       "IEscrowContract": [
-        1948
+        3954
       ]
     },
-    "id": 1949,
+    "id": 3955,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1932,
+        "id": 3938,
         "literals": [
           "solidity",
           "^",
@@ -61,7 +61,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:8"
       },
       {
         "baseContracts": [],
@@ -69,9 +69,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1948,
+        "id": 3954,
         "linearizedBaseContracts": [
-          1948
+          3954
         ],
         "name": "IEscrowContract",
         "nodeType": "ContractDefinition",
@@ -79,7 +79,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1947,
+            "id": 3953,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -87,16 +87,16 @@
             "name": "setDataToStartEscrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1945,
+              "id": 3951,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1934,
+                  "id": 3940,
                   "name": "_tradeHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "91:18:3",
+                  "scope": 3953,
+                  "src": "91:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -104,10 +104,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1933,
+                    "id": 3939,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "91:7:3",
+                    "src": "91:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -118,11 +118,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1936,
+                  "id": 3942,
                   "name": "_sellerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "111:22:3",
+                  "scope": 3953,
+                  "src": "111:22:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -130,10 +130,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1935,
+                    "id": 3941,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "111:7:3",
+                    "src": "111:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -144,11 +144,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1938,
+                  "id": 3944,
                   "name": "_buyerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "135:21:3",
+                  "scope": 3953,
+                  "src": "135:21:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -156,10 +156,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1937,
+                    "id": 3943,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "135:7:3",
+                    "src": "135:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -170,11 +170,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1940,
+                  "id": 3946,
                   "name": "_arbitratorAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "158:26:3",
+                  "scope": 3953,
+                  "src": "158:26:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -182,10 +182,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1939,
+                    "id": 3945,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "158:7:3",
+                    "src": "158:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -196,11 +196,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1942,
+                  "id": 3948,
                   "name": "_arbitratorFees",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "186:20:3",
+                  "scope": 3953,
+                  "src": "186:20:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -208,10 +208,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1941,
+                    "id": 3947,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "186:4:3",
+                    "src": "186:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -222,11 +222,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1944,
+                  "id": 3950,
                   "name": "_offeredAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "208:19:3",
+                  "scope": 3953,
+                  "src": "208:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -234,10 +234,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1943,
+                    "id": 3949,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "208:4:3",
+                    "src": "208:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -247,40 +247,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "90:138:3"
+              "src": "90:138:8"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1946,
+              "id": 3952,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "237:0:3"
+              "src": "237:0:8"
             },
-            "scope": 1948,
-            "src": "60:178:3",
+            "scope": 3954,
+            "src": "60:178:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1949,
-        "src": "28:213:3"
+        "scope": 3955,
+        "src": "28:213:8"
       }
     ],
-    "src": "0:241:3"
+    "src": "0:241:8"
   },
   "legacyAST": {
-    "absolutePath": "/E/DEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
+    "absolutePath": "/E/LocalDEX/Smart Contracts/FinalizedContracts/TestContracts/contracts/IEscrowContract.sol",
     "exportedSymbols": {
       "IEscrowContract": [
-        1948
+        3954
       ]
     },
-    "id": 1949,
+    "id": 3955,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1932,
+        "id": 3938,
         "literals": [
           "solidity",
           "^",
@@ -288,7 +288,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:8"
       },
       {
         "baseContracts": [],
@@ -296,9 +296,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1948,
+        "id": 3954,
         "linearizedBaseContracts": [
-          1948
+          3954
         ],
         "name": "IEscrowContract",
         "nodeType": "ContractDefinition",
@@ -306,7 +306,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1947,
+            "id": 3953,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -314,16 +314,16 @@
             "name": "setDataToStartEscrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1945,
+              "id": 3951,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1934,
+                  "id": 3940,
                   "name": "_tradeHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "91:18:3",
+                  "scope": 3953,
+                  "src": "91:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -331,10 +331,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1933,
+                    "id": 3939,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "91:7:3",
+                    "src": "91:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -345,11 +345,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1936,
+                  "id": 3942,
                   "name": "_sellerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "111:22:3",
+                  "scope": 3953,
+                  "src": "111:22:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -357,10 +357,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1935,
+                    "id": 3941,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "111:7:3",
+                    "src": "111:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -371,11 +371,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1938,
+                  "id": 3944,
                   "name": "_buyerAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "135:21:3",
+                  "scope": 3953,
+                  "src": "135:21:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -383,10 +383,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1937,
+                    "id": 3943,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "135:7:3",
+                    "src": "135:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -397,11 +397,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1940,
+                  "id": 3946,
                   "name": "_arbitratorAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "158:26:3",
+                  "scope": 3953,
+                  "src": "158:26:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -409,10 +409,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1939,
+                    "id": 3945,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "158:7:3",
+                    "src": "158:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -423,11 +423,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1942,
+                  "id": 3948,
                   "name": "_arbitratorFees",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "186:20:3",
+                  "scope": 3953,
+                  "src": "186:20:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -435,10 +435,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1941,
+                    "id": 3947,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "186:4:3",
+                    "src": "186:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -449,11 +449,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1944,
+                  "id": 3950,
                   "name": "_offeredAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1947,
-                  "src": "208:19:3",
+                  "scope": 3953,
+                  "src": "208:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -461,10 +461,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1943,
+                    "id": 3949,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "208:4:3",
+                    "src": "208:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -474,27 +474,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "90:138:3"
+              "src": "90:138:8"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1946,
+              "id": 3952,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "237:0:3"
+              "src": "237:0:8"
             },
-            "scope": 1948,
-            "src": "60:178:3",
+            "scope": 3954,
+            "src": "60:178:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1949,
-        "src": "28:213:3"
+        "scope": 3955,
+        "src": "28:213:8"
       }
     ],
-    "src": "0:241:3"
+    "src": "0:241:8"
   },
   "compiler": {
     "name": "solc",
@@ -502,5 +502,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-04T07:40:51.094Z"
+  "updatedAt": "2018-06-05T20:01:05.185Z"
 }
