@@ -30,7 +30,7 @@ export class WalletComponent implements OnInit {
       this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
     }
     this.coinbase = this.web3.eth.accounts[0];
-    this.recoverWallet("kuchni", "kuchni");
+    this.generateEthWallet();
     // Listening for Selected Account Changes
     // var account = web3.eth.accounts[0];
     // var accountInterval = setInterval(function () {
@@ -71,7 +71,7 @@ export class WalletComponent implements OnInit {
         console.log(keyObject);
         let json=keythereum.exportToFile(keyObject);
         console.log(json);
-        //console.log(keythereum.recover("mparsec123", keyObject));
+        console.log((keythereum.recover("mparsec123", keyObject).toString('HEX')));
       });
     });
 
@@ -79,9 +79,6 @@ export class WalletComponent implements OnInit {
 
   public recoverWallet(privateKey: string, password: string) {
     //restore using private key
-    //"a29a3bde9515b9b1859abe9e5fe2c0da8433d383"
-    privateKey = "8108717c6bd89ce692d85adc40f681a1b4618b65421734abe3765764b074fceb";
-    password="mparsec123";
     var options = {
       kdf: "pbkdf2",
       cipher: "aes-128-ctr",
@@ -92,8 +89,7 @@ export class WalletComponent implements OnInit {
       }
     };
     let dk = keythereum.create();
-    dk.privateKey = new Buffer(privateKey);
-    keythereum.dump(password, dk.privateKey, dk.salt, dk.iv, options, function (keyObject) {
+    keythereum.dump(password,privateKey, dk.salt, dk.iv, options, function (keyObject) {
       console.log(keyObject);
       console.log(keyObject.Address);
     });
