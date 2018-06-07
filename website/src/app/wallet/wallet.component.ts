@@ -69,8 +69,17 @@ export class WalletComponent implements OnInit {
       keythereum.dump("mparsec123", dk.privateKey, dk.salt, dk.iv, options, function (keyObject) {
         console.log("keyObject");
         console.log(keyObject);
-        let json=keythereum.exportToFile(keyObject);
-        console.log(json);
+
+        //Download JSON FILE
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(keyObject));
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("download", "ethAccount" + ".json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+
+        //
         console.log((keythereum.recover("mparsec123", keyObject).toString('HEX')));
       });
     });
@@ -89,12 +98,14 @@ export class WalletComponent implements OnInit {
       }
     };
     let dk = keythereum.create();
-    keythereum.dump(password,privateKey, dk.salt, dk.iv, options, function (keyObject) {
+    keythereum.dump(password, privateKey, dk.salt, dk.iv, options, function (keyObject) {
       console.log(keyObject);
       console.log(keyObject.Address);
     });
 
   }
+
+
 
 
 }
