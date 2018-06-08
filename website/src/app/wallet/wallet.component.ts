@@ -30,7 +30,7 @@ export class WalletComponent implements OnInit {
       this.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.100.20:8545"));
     }
     this.coinbase = this.web3.eth.accounts[0];
-    this.generateEthWallet();
+    //this.generateEthWallet();
     // Listening for Selected Account Changes
     // var account = web3.eth.accounts[0];
     // var accountInterval = setInterval(function () {
@@ -73,7 +73,7 @@ export class WalletComponent implements OnInit {
         //Download JSON FILE
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(keyObject));
         var downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", "ethAccount" + ".json");
         document.body.appendChild(downloadAnchorNode); // required for firefox
         downloadAnchorNode.click();
@@ -81,12 +81,11 @@ export class WalletComponent implements OnInit {
 
         //
         console.log((keythereum.recover("mparsec123", keyObject).toString('HEX')));
-        console.log("0x"+keyObject.address);
+        console.log("0x" + keyObject.address);
       });
     });
 
   }
-
   public recoverWallet(privateKey: string, password: string) {
     //restore using private key
     var options = {
@@ -105,8 +104,15 @@ export class WalletComponent implements OnInit {
     });
 
   }
-
-
-
+  public recoverWalletUsingJsonFile(event) {
+    var reader = new FileReader();
+    reader.onload = () => {
+      //console.log(reader.result.split(',')[1]);
+      let keyObject = JSON.parse(atob(reader.result.split(',')[1]));
+      console.log("0x"+keyObject.address);
+      //console.log(keythereum.recover("mparsec123", keyObject).toString('HEX'));
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 }
