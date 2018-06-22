@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  dataToSend: string;
+
+  SendFunction(){
+    console.log(this.dataToSend);
+    this.dataToSend = "";
+  }
 }
