@@ -1,5 +1,5 @@
-'use strict'
 
+declare var require: any;
 const WebRTCStar = require('libp2p-webrtc-star')
 const WebSockets = require('libp2p-websockets')
 
